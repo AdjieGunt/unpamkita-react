@@ -1,11 +1,22 @@
 import React from 'react'
-import DuckImage from '../assets/Duck.jpg'
+// import DuckImage from '../assets/Duck.jpg'
 import './HomeView.scss'
+import Header from './../../../components/Header'
+import HeroHome from './../../../components/Hero/HeroHome/HeroHome'
+import StoryListing from './../../../components/StoryListing/StoryListing'
+import HeroInfo from './../../../components/Hero/HeroInfo/HeroInfo'
+import Footer from './../../../components/Footer/Footer'
+
 
 export const HomeView = () => (
   <div>
-    <h4>Welcome!</h4>
-    <img alt='This is a duck, because Redux!' className='duck' src={DuckImage} />
+    <Header />
+    <HeroHome />
+    <StoryListing />
+    <StoryListing />
+    <HeroInfo />
+    <StoryListing />
+    <Footer />
   </div>
 )
 

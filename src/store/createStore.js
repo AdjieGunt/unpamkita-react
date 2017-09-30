@@ -1,5 +1,6 @@
 import { applyMiddleware, compose, createStore as createReduxStore } from 'redux'
 import thunk from 'redux-thunk'
+import { apiMiddleWare } from 'redux-api-middleware'
 import { browserHistory } from 'react-router'
 import makeRootReducer from './reducers'
 import { updateLocation } from './location'
