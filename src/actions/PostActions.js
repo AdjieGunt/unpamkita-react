@@ -1,14 +1,85 @@
-import { CALL_API } from 'redux-api-middleware'
+import postsAPI from './../api/PostsApi'
+import * as types from './actionsTypes'
 
-export const FETCH_POSTS = 'FETCH_POST'
-export const FETCH_POSTS_SUCCESS = 'FETCH_POST_SUCCESS'
-export const FETCH_POSTS_FAILURE = 'FETCH_POST_FAILURE'
-
-
-export const fetchPosts = () => ({
-  [CALL_API] : {
-    type : [FETCH_POSTS, FETCH_POSTS_SUCCESS, FETCH_POSTS_FAILURE],
-    endpoint : 'http://demo.wp-api.org/wp-json/wp/v2/posts',
-    method : 'GET'
+// Load All Post Data
+export function loadPosts () {
+  return function (dispatch) {
+    return postsAPI.getAllPosts().then(posts => {
+      dispatch(LoadPostsSuccess(posts))
+    }).catch(error => {
+      throw (error)
+    })
   }
-})
+}
+
+export function LoadPostsSuccess (posts) {
+  return { type : types.LOAD_POSTS_SUCCESS, posts }
+}
+
+export function LoadPostsFailed (error) {
+  return { type : types.LOAD_POSTS_FAILED, error }
+}
+
+// Load post by slug
+export function loadPostBySlug (slug) {
+  return function (dispatch) {
+    return postsAPI.getPostBySlug(slug).then(post => {
+      dispatch(LoadPostBySlugSuccess(post))
+    }).catch(error => {
+      throw (error)
+    })
+  }
+}
+
+export function LoadPostBySlugSuccess (post) {
+  return { type : types.LOAD_POSTS_BY_SLUG_SUCCESS, post }
+}
+
+// Load All Media
+export function loadMedia () {
+  return function (dispatch) {
+    return postsAPI.getMedia().then(media => {
+      dispatch(LoadMediaSuccess(media))
+    }).catch(error => {
+      throw (error)
+    })
+  }
+}
+
+export function LoadMediaSuccess (media) {
+  return { type : types.LOAD_MEDIA_SUCCESS, media }
+}
+
+export function LoadMediaFailed (error) {
+  return { type : types.LOAD_MEDIA_FAILED, error }
+}
+
+// load post all categories
+export function loadCategories () {
+  return function (dispatch) {
+    return postsAPI.getCategories().then(categories => {
+      dispatch(LoadCategoriesSuccess(categories))
+    }).catch(error => {
+      throw (error)
+    })
+  }
+}
+
+export function LoadCategoriesSuccess (categories) {
+  return { type: types.LOAD_CATEGORIES_SUCCESS, categories }
+}
+
+// load media by id
+export function loadMediaById (id) {
+  return function (dispatch) {
+    return postsAPI.getMediaById(id).then(singleMedia => {
+      dispatch(LoadMediaByIdSuccess(singleMedia))
+    }).catch(error => {
+      throw (error)
+    })
+  }
+}
+
+export function LoadMediaByIdSuccess (singleMedia) {
+  return { type: types.LOAD_MEDIA_BY_ID_SUCCESS, singleMedia }
+}

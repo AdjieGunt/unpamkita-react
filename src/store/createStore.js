@@ -4,6 +4,7 @@ import { apiMiddleWare } from 'redux-api-middleware'
 import { browserHistory } from 'react-router'
 import makeRootReducer from './reducers'
 import { updateLocation } from './location'
+import { loadPosts, loadMedia, loadCategories } from './../actions/PostActions'
 
 const createStore = (initialState = {}) => {
   // ======================================================
@@ -35,6 +36,11 @@ const createStore = (initialState = {}) => {
     )
   )
   store.asyncReducers = {}
+
+  //
+  store.dispatch(loadPosts())
+  store.dispatch(loadMedia())
+  store.dispatch(loadCategories())
 
   // To unsubscribe, invoke `store.unsubscribeHistory()` anytime
   store.unsubscribeHistory = browserHistory.listen(updateLocation(store))

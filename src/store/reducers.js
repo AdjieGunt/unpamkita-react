@@ -1,9 +1,19 @@
 import { combineReducers } from 'redux'
 import locationReducer from './location'
+import posts from './../reducers/PostsReducer'
+import media from './../reducers/MediaReducer'
+import singleMedia from './../reducers/MediaByIdReducer'
+import categories from './../reducers/CategoriesReducer'
+import post from './../reducers/SinglePostReducer'
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
     location: locationReducer,
+    media: media,
+    posts: posts,
+    post:post,
+    categories: categories,
+    singleMedia:singleMedia,
     ...asyncReducers
   })
 }

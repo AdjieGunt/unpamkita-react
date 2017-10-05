@@ -1,9 +1,11 @@
 import React from 'react'
+// import PropTypes from 'prop-types'
 // import './HeroHome.scss'
 
 
 class Footer extends React.Component {
   render () {
+    // console.log(this.props.posts)
     return (
       <footer className="footer">
         <div className="container">
@@ -17,5 +19,7 @@ class Footer extends React.Component {
     )
   }
 }
+
+
 
 export default Footer
