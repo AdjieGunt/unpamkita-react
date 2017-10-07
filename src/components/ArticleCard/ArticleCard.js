@@ -28,7 +28,7 @@ class ArticleCard extends React.Component {
 
           <h2 className='title article-card-item-title is-size-6 '>
             <a className='is-info has-text-grey-dark' href={`/read/${post.slug}`}>
-              { post.title.rendered }
+              <div dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
             </a>
           </h2>
         </div>
