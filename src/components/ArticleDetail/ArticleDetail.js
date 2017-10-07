@@ -1,21 +1,38 @@
 import React from 'react'
 import './ArticleDetail.scss'
 import PropTypes from 'prop-types'
+import ArticleMeta from './ArticleMeta'
+
 class ArticleDetail extends React.Component {
   render () {
-    console.log(this.props)
+    // console.log(this.props)
     const { post, media } = this.props
-    let featuredImage = media.media_details.sizes.medium.source_url
-    if (!featuredImage) {
+    let featuredImage = ''
+    
+    if (typeof media === 'undefined') {
       featuredImage = 'http://via.placeholder.com/800x350'
+    } else if (typeof media.media_details.sizes.medium !== 'undefined') {
+      featuredImage = media.media_details.sizes.medium.source_url
+    } else if (typeof media.media_details.sizes.medium === 'undefined'){
+      featuredImage = media.source_url
+    } else {
+      featuredImage = null
     }
+    let figureImage = ''
+    if (featuredImage !== null) {
+      figureImage = <figure className='image article-featured-image is-16by9'>
+        <img src={featuredImage} alt='Gambar artikel' />
+      </figure>
+    }
+
     return (
       <div>
         <div className='is-single'>
-          <figure className='image article-featured-image is-16by9'>
-            <img src={featuredImage} alt='Gambar artikel' />
-          </figure>
-          <h1 className='title'> { post.title.rendered } </h1>
+          <h1 className='title'>
+            <div dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+           </h1>
+           <ArticleMeta />
+          { figureImage }
           <div className='content is-medium'>
             <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
           </div>

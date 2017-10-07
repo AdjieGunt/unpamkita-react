@@ -33,9 +33,9 @@ class ReadPageContainer extends Component {
   }
 
   render () { 
-    console.log(typeof this.props.singleMedia.id !== 'undefined')
+    // console.log(typeof this.props.singleMedia.id !== 'undefined')
     if (typeof this.props.post[0] !== 'undefined'){
-      console.log(this.props.post[0].featured_media)
+      // console.log(this.props.post[0].featured_media)
       loadMediaById(this.props.post[0].featured_media)
     }
     let elem = <ReadPagePlaceholder />
@@ -77,11 +77,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-    if (typeof stateProps.post[0] !== 'undefined'){
-      console.log(stateProps.post[0])
-      // dispatchProps.dispatchMedia()
-      // dispatchProps.dispatchMedia(stateProps.post[0].featured_media)
-    }
     return {
         ...ownProps,
         post: stateProps.post,
