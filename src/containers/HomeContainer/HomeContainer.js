@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Header from './../../components/Header/Header'
 import HeroHome from './../../components/Hero/HeroHome/HeroHome'
 import StoryListing from './../../components/StoryListing/StoryListing'
-import HeroInfo from './../../components/Hero/HeroInfo/HeroInfo'
+// import HeroInfo from './../../components/Hero/HeroInfo/HeroInfo'
 import Footer from './../../components/Footer/Footer'
 import { connect } from 'react-redux'
 import Spinner from './../../components/Spinner'
@@ -14,21 +14,21 @@ class HomeContainer extends React.Component {
   render () {
     const elem = () => {
       return (
-      <div>
-        <Header />
-        <HeroHome />
-        <StoryListing
-          listingtitle='Artikel Pilihan'
-          posts={this.props.posts}
-          media={this.props.media}
-          categories={this.props.categories}
+        <div>
+          <Header />
+          <HeroHome />
+          <StoryListing
+            listingtitle='Artikel Pilihan'
+            posts={this.props.posts}
+            media={this.props.media}
+            categories={this.props.categories}
           />
-        <Footer />
-      </div>
-    )
+          <Footer />
+        </div>
+      )
     }
-    console.log(this.props.media.length)
-    if (this.props.media.length === 0){ 
+    // console.log(this.props.media.length)
+    if (this.props.media.length === 0) { 
       return (
         <div>
           <Header />
@@ -38,7 +38,6 @@ class HomeContainer extends React.Component {
     } else {
       return elem()
     }
-    
   }
 }
 

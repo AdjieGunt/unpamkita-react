@@ -3,7 +3,8 @@ import ArticleDetail from './../../components/ArticleDetail/ArticleDetail'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loadMediaById, loadPostBySlug } from './../../actions/PostActions'
-import Spinner from './../../components/Spinner'
+// import Spinner from './../../components/Spinner'
+import ReadPagePlaceholder from './../../components/ContentPlaceholder/ReadPagePlaceholder'
 
 
 class ReadPageContainer extends Component {
@@ -11,19 +12,6 @@ class ReadPageContainer extends Component {
     super()
     this.dispatchMedia = dispatchMedia
   }
-
-  // getPostBySlug = (slug) => {
-  //   const posts = this.props.posts
-  //   let post = {}
-  //   for (let i = 0; i < posts.length; i++ ){
-  //     if (posts[i].slug === slug) {
-  //       post = posts[i]
-  //       break
-  //     }
-  //   }
-  //   return post
-  // }
-
   getMediaById = (id) => {
     const media = this.props.media
     let NewMedia = {}
@@ -35,14 +23,23 @@ class ReadPageContainer extends Component {
     }
     return NewMedia
   }
+
   componentDidMount () {
     this.props.dispatchPost(this.props.slug)
-    this.props.dispatchMedia(7360)
+    setTimeout(() => {
+      this.props.dispatchMedia(this.props.post[0].featured_media)
+    }, 5000)
+            
   }
+
   render () { 
-    console.log(this.props)
-    let elem = <Spinner />
-    if (this.props.post.length > 0) {
+    console.log(typeof this.props.singleMedia.id !== 'undefined')
+    if (typeof this.props.post[0] !== 'undefined'){
+      console.log(this.props.post[0].featured_media)
+      loadMediaById(this.props.post[0].featured_media)
+    }
+    let elem = <ReadPagePlaceholder />
+    if (this.props.post.length > 0 && typeof this.props.singleMedia.id !== 'undefined') {
       elem = <ArticleDetail post={this.props.post[0]} media={this.props.singleMedia} />
     } 
     return (
@@ -80,6 +77,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
+    if (typeof stateProps.post[0] !== 'undefined'){
+      console.log(stateProps.post[0])
+      // dispatchProps.dispatchMedia()
+      // dispatchProps.dispatchMedia(stateProps.post[0].featured_media)
+    }
     return {
         ...ownProps,
         post: stateProps.post,

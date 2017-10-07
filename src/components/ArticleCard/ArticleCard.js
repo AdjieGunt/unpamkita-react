@@ -7,9 +7,10 @@ class ArticleCard extends React.Component {
   
   render () {
     let { post, media, category } = this.props
-    let FeaturedImage = media.media_details.sizes.medium.source_url
-    console.log(media.media_details.sizes.medium.source_url)
-    FeaturedImage = FeaturedImage ? FeaturedImage : 'http://via.placeholder.com/350x200'    
+    // let FeaturedImage = media.media_details.sizes.medium.source_url
+    // console.log(media.media_details.sizes.medium.source_url)
+    // FeaturedImage = FeaturedImage ? FeaturedImage : 'http://via.placeholder.com/350x200'  
+    let FeaturedImage = 'http://via.placeholder.com/350x200'
     return (
       <div className='card'>
         <div className='card-image'>
