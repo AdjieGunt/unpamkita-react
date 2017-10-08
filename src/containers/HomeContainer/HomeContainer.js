@@ -17,6 +17,8 @@ class HomeContainer extends React.Component {
         <div>
           <Header />
           <HeroHome />
+        
+        <div className='column is-offset-1 is-9' >
           <StoryListing
             listingtitle='Artikel Pilihan'
             posts={this.props.posts}
@@ -25,6 +27,7 @@ class HomeContainer extends React.Component {
           />
           <Footer />
         </div>
+        </div>
       )
     }
     // console.log(this.props.media.length)
@@ -32,6 +35,7 @@ class HomeContainer extends React.Component {
       return (
         <div>
           <Header />
+          <HeroHome />
           <Spinner />
         </div>
         )

@@ -26,7 +26,7 @@ export function loadPostBySlug (slug) {
     return postsAPI.getPostBySlug(slug).then(post => {
       dispatch(LoadPostBySlugSuccess(post))
     }).catch(error => {
-      throw (error)
+      dispatch(LoadPostBySlugFailed(error))
     })
   }
 }
@@ -34,6 +34,12 @@ export function loadPostBySlug (slug) {
 export function LoadPostBySlugSuccess (post) {
   return { type : types.LOAD_POSTS_BY_SLUG_SUCCESS, post }
 }
+
+export function LoadPostBySlugFailed (error) {
+  return { type : types.LOAD_POSTS_BY_SLUG_FAILED, error }
+}
+
+
 
 // Load All Media
 export function loadMedia () {

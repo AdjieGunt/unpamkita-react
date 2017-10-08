@@ -5,7 +5,7 @@ import ArticleMeta from './ArticleMeta'
 
 class ArticleDetail extends React.Component {
   render () {
-    // console.log(this.props)
+    console.log(this.props)
     const { post, media } = this.props
     let featuredImage = ''
     
@@ -31,7 +31,7 @@ class ArticleDetail extends React.Component {
           <h1 className='title'>
             <div dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
            </h1>
-           <ArticleMeta />
+           <ArticleMeta publishDate={post.date} />
           { figureImage }
           <div className='content is-medium'>
             <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
