@@ -2,31 +2,42 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Header from './../../components/Header/Header'
 import HeroHome from './../../components/Hero/HeroHome/HeroHome'
+import FeaturedPost from './../../components/FeaturedPosts/FeaturedPost'
 import StoryListing from './../../components/StoryListing/StoryListing'
 // import HeroInfo from './../../components/Hero/HeroInfo/HeroInfo'
 import Footer from './../../components/Footer/Footer'
 import { connect } from 'react-redux'
 import Spinner from './../../components/Spinner'
 // import * as postActions from './../../actions/PostActions'
+import { loadMedia, loadPosts, loadCategories } from './../../actions/PostActions'
 
 
 class HomeContainer extends React.Component {
+  
+  componentDidMount(){
+    this.props.dispatchData()  
+  }
+
   render () {
+    console.log(this.props)
     const elem = () => {
       return (
         <div>
           <Header />
-          <HeroHome />
-        
-        <div className='column is-offset-1 is-9' >
+          <FeaturedPost 
+            posts={this.props.posts}
+            media={this.props.media}
+          />
+        <div className='column container' >
           <StoryListing
-            listingtitle='Artikel Pilihan'
+            listingtitle='Latest Post'
             posts={this.props.posts}
             media={this.props.media}
             categories={this.props.categories}
           />
-          <Footer />
+          
         </div>
+        <Footer />
         </div>
       )
     }
@@ -35,7 +46,7 @@ class HomeContainer extends React.Component {
       return (
         <div>
           <Header />
-          <HeroHome />
+          {/* <FeaturedPost /> */}
           <Spinner />
         </div>
         )
@@ -60,4 +71,25 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps)(HomeContainer)
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    dispatchData: () => {
+      dispatch(loadPosts())
+      dispatch(loadMedia())
+      dispatch(loadCategories())
+    }
+  }
+}
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return {
+    ...ownProps,
+    posts : stateProps.posts,
+    media : stateProps.media,
+    categories : stateProps.categories,
+    dispatchData : dispatchProps.dispatchData
+  }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(HomeContainer)

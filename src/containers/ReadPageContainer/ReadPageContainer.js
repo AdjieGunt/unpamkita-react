@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loadMediaById, loadPostBySlug } from './../../actions/PostActions'
 // import Spinner from './../../components/Spinner'
-import ReadPagePlaceholder from './../../components/ContentPlaceholder/ReadPagePlaceholder'
+// import ReadPagePlaceholder from './../../components/ContentPlaceholder/ReadPagePlaceholder'
 
 
 class ReadPageContainer extends Component {
@@ -38,7 +38,7 @@ class ReadPageContainer extends Component {
       // console.log(this.props.post[0].featured_media)
       loadMediaById(this.props.post[0].featured_media)
     }
-    let elem = <ReadPagePlaceholder />
+    let elem = 'Loading ...'//<ReadPagePlaceholder />
     if (this.props.post.length > 0 && typeof this.props.singleMedia.id !== 'undefined') {
       elem = <ArticleDetail post={this.props.post[0]} media={this.props.singleMedia} />
     } 

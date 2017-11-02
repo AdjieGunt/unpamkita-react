@@ -10,4 +10,18 @@
         padding-left:1rem;
         border-left: 5px solid #888;
     }
+
+    .card {
+        box-shadow: inherit;
+    }
+
+    .card-content {
+        padding: 1rem;
+        h2 {
+            line-height: 20px;
+        }
+        a div:hover {
+            color:#3273dc;;
+        }
+    }
 }

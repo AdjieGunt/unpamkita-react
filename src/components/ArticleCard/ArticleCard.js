@@ -16,8 +16,8 @@ class ArticleCard extends React.Component {
    
     return (
       <div className='card'>
-        <div className='card-image'>
-          <figure className='image is-3by2'>
+        <div className='card-image outer'>
+          <figure className='image is-3by2 '>
             <img src={ FeaturedImage } alt='Placeholder' />       
           </figure>
         </div>

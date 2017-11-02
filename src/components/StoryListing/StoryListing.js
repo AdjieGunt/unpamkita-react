@@ -47,9 +47,9 @@ class StoryListing extends React.Component {
         <div className='columns is-mobile story-listing-header'>
             <div className='column is-4'>
                 <div className='story-listing-title'>
-                    <h4 className='is-2'>
+                    <h2 className='is-2'>
                         {this.props.listingtitle}
-                    </h4>
+                    </h2>
                 </div>
             </div>
          {

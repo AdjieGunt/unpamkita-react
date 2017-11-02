@@ -1,7 +1,7 @@
 import React from 'react'
 import './ArticleDetail.scss'
 import PropTypes from 'prop-types'
-import ArticleMeta from './ArticleMeta'
+// import ArticleMeta from './ArticleMeta'
 
 class ArticleDetail extends React.Component {
   render () {
@@ -31,7 +31,7 @@ class ArticleDetail extends React.Component {
           <h1 className='title'>
             <div dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
            </h1>
-           <ArticleMeta publishDate={post.date} />
+           {/* <ArticleMeta publishDate={post.date} /> */}
           { figureImage }
           <div className='content is-medium'>
             <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />

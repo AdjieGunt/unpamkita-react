@@ -20,6 +20,7 @@ class Header extends React.Component {
   render () {
     let isActive = this.state.isActive ? 'is-active' : ''
     return (
+    <header>
       <div className='container'>
         <nav className='navbar'>
           <div className='navbar-brand'>
@@ -51,6 +52,7 @@ class Header extends React.Component {
           </div>
         </nav>
       </div>
+    </header>
     )
   }
 }
