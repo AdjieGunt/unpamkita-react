@@ -16,6 +16,26 @@ article {
   }
 }
 
+.cover {
+  margin: 0 auto;
+  padding: 4px;
+  position: relative
+}
+.cover:after {
+  content: "";
+  display: table;
+  clear: both
+}
+.cover h1 {
+  font-size: 40px;
+  left: 16px;
+  letter-spacing: -.02em;
+  top: 12px;
+  pointer-events: none;
+  position: absolute;
+  z-index: 5
+}
+
 .cover-story {
   float: left;
   padding: 4px;
@@ -60,6 +80,13 @@ article {
 h2 {
   // font-size: 20px;
   font-family: 'Roboto', sans-serif;
+}
+
+@media(max-width:767px){
+  .cover article {
+    min-height:30vh;
+    position: relative;
+  }
 }
 
 @media(min-width:768px){
