@@ -2,7 +2,15 @@
     font-size: 1.3rem;
 }
 .article-meta > p {
-    font-size: 0.8rem;
-    margin-bottom: 0.6rem;
+    font-size: 0.6rem;
+    margin-bottom: 0.1rem;
     color:#666;
+}
+
+@media(min-width:1024px){
+    .article-meta > p {
+        font-size: 0.8rem;
+        margin-bottom: 0.6rem;
+        color:#666;
+    }
 }

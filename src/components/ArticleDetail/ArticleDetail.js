@@ -7,29 +7,35 @@ import LazyLoad from 'react-lazy-load'
 
 class ArticleDetail extends React.Component {
   
+  figureImage = ''
+  featuredImage = 'http://via.placeholder.com/800x350'
+  post = {}
+  media = {}
 
+  componentDidMount () {
+    const { media } = this.props
+    
+    if (typeof media === 'undefined') {
+      this.featuredImage = 'http://via.placeholder.com/800x350'
+    } else if (typeof media.media_details.sizes.medium !== 'undefined') {
+      this.featuredImage = media.media_details.sizes.full.source_url
+    } else if (typeof media.media_details.sizes.full === 'undefined'){
+      this.featuredImage = media.source_url
+    } else {
+      this.featuredImage = null
+    }
+    
+    if (this.featuredImage !== null) {
+      this.figureImage = 
+        <img src={this.featuredImage} alt='Gambar artikel' className=' lazy lazyLoaded' />
+    }
+    console.log(this.figureImage)
+  }
 
   render () {
     // console.log(featuredImage)
-    const { post, media } = this.props
-    let featuredImage = ''
-    
-    if (typeof media === 'undefined') {
-      featuredImage = 'http://via.placeholder.com/800x350'
-    } else if (typeof media.media_details.sizes.medium !== 'undefined') {
-      featuredImage = media.media_details.sizes.full.source_url
-    } else if (typeof media.media_details.sizes.full === 'undefined'){
-      featuredImage = media.source_url
-    } else {
-      featuredImage = null
-    }
-    let figureImage = ''
-    if (featuredImage !== null) {
-      figureImage = <figure className='image article-featured-image is-16by9'>
-        <img src={featuredImage} alt='Gambar artikel' className=' lazy lazyLoaded' />
-        <div className='caption'></div>
-      </figure>
-    }
+    const { post } = this.props
+    // let featuredImage = this.featuredImage
 
     return (
       <div>
@@ -44,9 +50,9 @@ class ArticleDetail extends React.Component {
               {/* <li><span className='tag is-info'>Info</span></li> */}
             </ul>
           </div>
-          <LazyLoad>
-          { figureImage }
-          </LazyLoad>
+          <figure className='image article-featured-image is-16by9'>
+          { this.figureImage }
+          </figure>
           <div className='content'>
             <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
           </div>
