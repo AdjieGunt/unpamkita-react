@@ -2,6 +2,8 @@ import React from 'react'
 import './ArticleCard.scss'
 import PropTypes from 'prop-types'
 import TimeAgo from 'react-timeago'
+import { Grid, Row, Col } from 'react-flexbox-grid'
+import { Link } from 'react-router'
 
 class ArticleCard extends React.Component {
   
@@ -9,29 +11,28 @@ class ArticleCard extends React.Component {
     let { post, media, category } = this.props
     let FeaturedImage = 'http://via.placeholder.com/350x200'    
     if ( typeof media.media_details.sizes.thumbnail !== 'undefined') {
-      FeaturedImage = media.media_details.sizes.thumbnail.source_url
+      FeaturedImage = media.media_details.sizes.medium.source_url
     } else {
       FeaturedImage = media.media_details.sizes.full.source_url      
     }
    
     return (
-      <div className='card'>
-        <div className='card-image outer'>
-          <figure className='image is-3by2 '>
-            <img src={ FeaturedImage } alt='Placeholder' />       
-          </figure>
-        </div>
-        <div className='card-content'>
+      <div className='row article-list-item'>
+        <Col xs={3} md={12}>
+          <Link to={`/read/${post.slug}`} className='article-list-item-image' style={{backgroundImage:'url(' + FeaturedImage + ')'}}></Link>
+        </Col>
+        <Col xs={9} md={12}>
           <div className='article-meta'>
+            {/* <p><TimeAgo date={ "2017-05-27T11:17:18" } /> by <b>Adjie Guntoro</b></p> */}
             <p><TimeAgo date={ post.date_gmt } /> by <b>Adjie Guntoro</b></p>
+                {/* href={`/read/${post.slug}`} */}
+            <h2 className=' article-item-title is-size-6 '>
+              <Link to={`/read/${post.slug}`} className='is-info has-text-grey-dark' >
+                <div dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+              </Link>
+            </h2>
           </div>
-
-          <h2 className='title article-card-item-title is-size-6 '>
-            <a className='is-info has-text-grey-dark' href={`/read/${post.slug}`}>
-              <div dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-            </a>
-          </h2>
-        </div>
+        </Col>
       </div>
     )
   }

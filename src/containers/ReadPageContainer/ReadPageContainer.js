@@ -45,12 +45,10 @@ class ReadPageContainer extends Component {
     return (
       <div>
         <section className='section'>
-          <div className='container'>
             <div className='columns'>
               <div className='column is-offset-2 is-8'>
                 { elem }
               </div>
-            </div>
           </div>
         </section>
       </div>

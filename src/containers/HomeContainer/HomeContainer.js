@@ -4,6 +4,8 @@ import Header from './../../components/Header/Header'
 import HeroHome from './../../components/Hero/HeroHome/HeroHome'
 import FeaturedPost from './../../components/FeaturedPosts/FeaturedPost'
 import StoryListing from './../../components/StoryListing/StoryListing'
+import ArticleList from './../../components/ArticleList'
+
 // import HeroInfo from './../../components/Hero/HeroInfo/HeroInfo'
 import Footer from './../../components/Footer/Footer'
 import { connect } from 'react-redux'
@@ -13,7 +15,7 @@ import { loadMedia, loadPosts, loadCategories } from './../../actions/PostAction
 
 
 class HomeContainer extends React.Component {
-  
+ 
   componentDidMount(){
     this.props.dispatchData()  
   }
@@ -28,15 +30,22 @@ class HomeContainer extends React.Component {
             posts={this.props.posts}
             media={this.props.media}
           />
-        <div className='column container' >
-          <StoryListing
+        
+        <div className='container'>
+          <ArticleList 
             listingtitle='Latest Post'
             posts={this.props.posts}
             media={this.props.media}
             categories={this.props.categories}
           />
-          
+          {/* <StoryListing
+            listingtitle='Latest Post'
+            posts={this.props.posts}
+            media={this.props.media}
+            categories={this.props.categories}
+          /> */}
         </div>
+        
         <Footer />
         </div>
       )

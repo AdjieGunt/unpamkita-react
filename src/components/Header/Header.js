@@ -1,7 +1,7 @@
 import React from 'react'
 import './Header.scss'
 import logo from './../../../public/assets/unpamkita-logo-small.png'
-
+import { Link } from 'react-router'
 class Header extends React.Component {
   constructor (props) {
     super(props)
@@ -24,9 +24,9 @@ class Header extends React.Component {
       <div className='container'>
         <nav className='navbar'>
           <div className='navbar-brand'>
-            <a className='navbar-item' href='/'>
+            <Link to='/' className='navbar-item' href='/'>
               <img src={logo} alt='Unpamkita Logo' />
-            </a>
+            </Link>
             <div className={`navbar-burger burger ${isActive}`} data-target='navMenuDocumentation' onClick={(e) => this.navbarMenuToogle(e)}>
               <span />
               <span />

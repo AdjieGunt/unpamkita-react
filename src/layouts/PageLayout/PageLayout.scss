@@ -6,3 +6,19 @@
   font-weight: bold;
   text-decoration: underline;
 }
+
+body {
+  min-height: 100vh;
+}
+
+.lazy {
+  -moz-transition: ease .4s;
+  -o-transition: ease .4s;
+  -webkit-transition: ease .4s;
+  transition: ease .4s;
+  opacity: 0;
+  will-change: opacity
+}
+.lazy.lazyLoaded {
+  opacity: 1
+}

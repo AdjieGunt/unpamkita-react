@@ -97,7 +97,7 @@ const extractStyles = new ExtractTextPlugin({
 })
 
 config.module.rules.push({
-  test: /\.(sass|scss)$/,
+  test: /\.(sass|scss|css)$/,
   loader: extractStyles.extract({
     fallback: 'style-loader',
     use: [
@@ -135,6 +135,12 @@ config.module.rules.push({
   })
 })
 config.plugins.push(extractStyles)
+
+config.module.rules.push({
+  test: /\.css$/,
+  loader: 'style-loader!css-loader?modules',
+  include: '/flexboxgrid2/'
+})
 
 // Images
 // ------------------------------------

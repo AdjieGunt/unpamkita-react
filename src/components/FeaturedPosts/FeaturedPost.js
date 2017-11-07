@@ -2,7 +2,7 @@ import React from 'react'
 import './FeaturedPost.scss'
 import sampleImage from './assets/Lighthouse.jpg'
 import sampleImage2 from './assets/sarjana.jpg'
-
+import { Link } from 'react-router'
 
 
 class FeaturedPost extends React.Component {
@@ -38,13 +38,12 @@ class FeaturedPost extends React.Component {
                   sizes='(max-width:796px) 100vw, 769px'
                   width='769' height='383'
                   ></div>
-                  <a className='cover-trigger' href={`/read/${post.slug}`}>
-                  </a>
+                  <Link className='cover-trigger' to={`/read/${post.slug}`} />
                   <header className='cover-header'>
                     <h2 className='cover-title'>
-                      <a href={`/read/${post.slug}`}>
+                      <Link to={`/read/${post.slug}`}>
                       {post.title.rendered}
-                      </a>
+                      </Link>
                     </h2>
                   </header>
                 </article>
