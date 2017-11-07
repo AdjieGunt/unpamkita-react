@@ -1,7 +1,7 @@
 import React from 'react'
 import './FeaturedPost.scss'
-import sampleImage from './assets/Lighthouse.jpg'
-import sampleImage2 from './assets/sarjana.jpg'
+// import sampleImage from './assets/Lighthouse.jpg'
+// import sampleImage2 from './assets/sarjana.jpg'
 import { Link } from 'react-router'
 
 

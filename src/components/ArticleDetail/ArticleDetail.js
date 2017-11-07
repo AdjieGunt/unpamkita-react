@@ -3,6 +3,7 @@ import './ArticleDetail.scss'
 import PropTypes from 'prop-types'
 import FacebookProvider, { Comments } from 'react-facebook'
 // import ArticleMeta from './ArticleMeta'
+import LazyLoad from 'react-lazy-load'
 
 class ArticleDetail extends React.Component {
   
@@ -33,17 +34,19 @@ class ArticleDetail extends React.Component {
     return (
       <div>
         <div className='is-single'>
-          <h1 className='title'>
-            <div dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-          </h1>
-          <div className='article-meta'>
+          <div className='article-title'>
+            <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+          </div>
+          <div className='article-detail-meta'>
             <ul>
               <li> Sabtu, 04 Nov 2017 </li>
               <li> Oleh : Adjie Guntoro </li>
-              <li><span className='tag is-info'>Info</span></li>
+              {/* <li><span className='tag is-info'>Info</span></li> */}
             </ul>
           </div>
+          <LazyLoad>
           { figureImage }
+          </LazyLoad>
           <div className='content'>
             <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
           </div>

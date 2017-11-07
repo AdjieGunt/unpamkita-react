@@ -3,7 +3,7 @@ import './ArticleList.scss'
 import ArticleCard from './../ArticleCard/ArticleCard'
 // import 'bootstrap-4-grid'
 import { Grid, Row, Col } from 'react-flexbox-grid'
-import FeaturedImage from './assets/sarjana.jpg'
+// import FeaturedImage from './assets/sarjana.jpg'
 import TimeAgo from 'react-timeago'
 
 

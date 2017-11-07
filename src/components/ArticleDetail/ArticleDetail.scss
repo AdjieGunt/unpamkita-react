@@ -1,15 +1,44 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:900');
+
 .article-featured-image {
     margin-bottom:2rem;
 }
 
-.title {
+.article-title h1 {
+    font-size: 2rem;
     font-family: 'Roboto', sans-serif;
 }
 
-.article-meta {
+@media(max-width:767px){
+    .article-title h1 {
+        font-size: 1.4rem;
+        line-height: 1.5rem;
+    }    
+}
+
+@media(min-width:1024px){
+    .article-detail-meta {
+        display: block;
+        padding:0px 0px 10px 0px;
+        ul {
+            height: 20px;
+            text-align: left;
+        }
+        li {
+            display: inline;
+            font-size: 2rem;
+        }
+    }
+}
+.article-detail-meta {
     display: block;
+    padding:0px 0px 10px 0px;
+    ul {
+        height: 20px;
+        text-align: left;
+    }
     li {
-        // float: left;
+        display: inline;
+        font-size: 0.7rem;
     }
 }
