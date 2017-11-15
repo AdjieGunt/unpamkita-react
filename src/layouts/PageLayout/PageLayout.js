@@ -3,6 +3,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './PageLayout.scss'
 import 'bulma'
+// import 'react-flexbox-grid'
+// import 'bootstrap/dist/css/bootstrap.css'
 
 export const PageLayout = ({ children }) => (
     <div className='page-layout__viewport'>

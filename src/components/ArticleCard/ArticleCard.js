@@ -9,11 +9,13 @@ class ArticleCard extends React.Component {
   
   render () {
     let { post, media, category } = this.props
+    let feature_media = post._embedded['wp:featuredmedia']['0']
+    console.log(feature_media)
     let FeaturedImage = 'http://via.placeholder.com/350x200'    
-    if ( typeof media.media_details.sizes.thumbnail !== 'undefined') {
-      FeaturedImage = media.media_details.sizes.medium.source_url
+    if ( typeof feature_media.media_details.sizes.thumbnail !== 'undefined') {
+      FeaturedImage = feature_media.media_details.sizes.medium.source_url
     } else {
-      FeaturedImage = media.media_details.sizes.full.source_url      
+      FeaturedImage = feature_media.media_details.sizes.full.source_url      
     }
    
     return (

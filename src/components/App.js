@@ -2,6 +2,8 @@ import React from 'react'
 import { browserHistory, Router } from 'react-router'
 import { Provider } from 'react-redux'
 import PropTypes from 'prop-types'
+import Moment from 'react-moment'
+import 'moment-timezone'
 
 class App extends React.Component {
   static propTypes = {

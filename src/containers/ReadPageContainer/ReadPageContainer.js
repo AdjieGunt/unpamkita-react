@@ -4,50 +4,62 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loadMediaById, loadPostBySlug } from './../../actions/PostActions'
 // import Spinner from './../../components/Spinner'
-// import ReadPagePlaceholder from './../../components/ContentPlaceholder/ReadPagePlaceholder'
+import ReadPageHolder from './../../components/ReadPageHolder'
+
+import {
+  ShareButtons,
+  ShareCounts,
+  generateShareIcon
+} from 'react-share';
 
 
 class ReadPageContainer extends Component {
-  constructor (props, dispatchMedia){
+  constructor (props){
     super()
-    this.dispatchMedia = dispatchMedia
+    // this.dispatchMedia = dispatchMedia
+    this.elem = <ReadPageHolder /> 
+   
   }
-  getMediaById = (id) => {
-    const media = this.props.media
-    let NewMedia = {}
-    for (let i = 0; i < media.length; i++) {
-      if (media[i].id === id) {
-        NewMedia = media[i]
-        break
-      }
+  
+  
+  componentWillMount () {
+    // this.elem = <ReadPageHolder />
+    console.log(this.props)          
+    this.props.dispatchPost(this.props.slug) 
+    if (this.props.post.length > 0) {
+      console.log(this.props.post)      
+      this.elem = <ArticleDetail post={this.props.post[0]} />
+      console.log(this.elem)              
     }
-    return NewMedia
-  }
-
-  componentDidMount () {
-    this.props.dispatchPost(this.props.slug)
-    setTimeout(() => {
-      this.props.dispatchMedia(this.props.post[0].featured_media)
-    }, 5000)
             
   }
 
-  render () { 
-    // console.log(typeof this.props.singleMedia.id !== 'undefined')
-    if (typeof this.props.post[0] !== 'undefined'){
-      // console.log(this.props.post[0].featured_media)
-      loadMediaById(this.props.post[0].featured_media)
+  componentDidMount(){
+    // this.props.dispatchPost(this.props.slug)
+    setTimeout(() => {
+    console.log(this.props)
+    if (this.props.post.length > 0) {
+      console.log(this.props.post)      
+      this.elem = <ArticleDetail post={this.props.post[0]} />
+      console.log(this.elem)              
     }
-    let elem = 'Loading ...'//<ReadPagePlaceholder />
-    if (this.props.post.length > 0 && typeof this.props.singleMedia.id !== 'undefined') {
-      elem = <ArticleDetail post={this.props.post[0]} media={this.props.singleMedia} />
-    } 
+  },3000)
+  }
+
+  render () { 
+    this.elem = <ReadPageHolder /> 
+    
+    if (this.props.post.length > 0) {
+      console.log(this.props.post)      
+      this.elem = <ArticleDetail post={this.props.post[0]} />
+      console.log(this.elem)              
+    }         
     return (
       <div>
-        <section className='section'>
+        <section >  
             <div className='columns'>
               <div className='column is-offset-2 is-8'>
-                { elem }
+                { this.elem }
               </div>
           </div>
         </section>
