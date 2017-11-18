@@ -20,9 +20,10 @@ class Header extends React.Component {
   render () {
     let isActive = this.state.isActive ? 'is-active' : ''
     return (
-    <header>
-      <div className='container'>
-        <nav className='navbar'>
+    // <header className='has-shadow'>
+      
+        <nav className='navbar has-shadow'>
+          <div className='container'>
           <div className='navbar-brand'>
             <Link to='/' className='navbar-item' href='/'>
               <img src={logo} alt='Unpamkita Logo' />
@@ -50,9 +51,11 @@ class Header extends React.Component {
               </div>
             </div>
           </div>
+          </div>
         </nav>
-      </div>
-    </header>
+     
+      
+    // </header>
     )
   }
 }

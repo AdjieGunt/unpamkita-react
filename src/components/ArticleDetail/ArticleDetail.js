@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import FacebookProvider, { Comments } from 'react-facebook'
 import ArticleMeta from '../ArticleMeta'
 import LazyLoad from 'react-lazy-load'
+import Breadcrumbs from '../Breadcrumbs'
 import {
   ShareButtons,
   ShareCounts,
@@ -82,19 +83,20 @@ class ArticleDetail extends React.Component {
     }
 
     let author = post._embedded['author']['0']
+    let term = post._embedded['wp:term']['0']
 
     // if (FeaturedImage !== null) {
     //   figureImage = 
     //     <img src={FeaturedImage} alt='Gambar artikel' className=' lazy lazyLoaded' />
     // }
-    console.log(author)
+    console.log(term)
     
     return (
       <div>
         <div className='is-single'>
-          
+          <Breadcrumbs title={post.title.rendered} term={term[0].name}/>
           <section className='section__header'>
-            <div className='article-title'>
+            <div className='article-title section__header-title'>
               <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
             </div>
           

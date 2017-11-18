@@ -6,7 +6,7 @@
 
 .article-title h1 {
     font-size: 2rem;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Avalon', sans-serif;
 }
 
 @media(max-width:767px){
@@ -53,6 +53,16 @@
 }
 
 .section__header {
+    padding:0px 20px;
+    margin-bottom: 25px;
+
+    .section__header-title {
+        margin-bottom: 25px;
+    }
+
+    .SocialMediaShareButton:hover {
+        cursor: pointer;
+    }
 
 }
 

@@ -17,43 +17,36 @@ class ReadPageContainer extends Component {
   constructor (props){
     super()
     // this.dispatchMedia = dispatchMedia
-    this.elem = <ReadPageHolder /> 
+     
    
   }
   
   
   componentWillMount () {
-    // this.elem = <ReadPageHolder />
+    this.elem = <ReadPageHolder />
     console.log(this.props)          
-    this.props.dispatchPost(this.props.slug) 
-    if (this.props.post.length > 0) {
-      console.log(this.props.post)      
-      this.elem = <ArticleDetail post={this.props.post[0]} />
-      console.log(this.elem)              
-    }
-            
+    // this.props.dispatchPost(this.props.slug)             
   }
 
   componentDidMount(){
-    // this.props.dispatchPost(this.props.slug)
-    setTimeout(() => {
-    console.log(this.props)
+    this.props.dispatchPost(this.props.slug)
+    // setTimeout(() => {
+    //   console.log(this.props.slug)
+    //   if (this.props.post.length > 0) {
+    //     console.log(this.props.post)      
+    //     this.elem = <ArticleDetail post={this.props.post[0]} />
+    //     console.log(this.elem)              
+    //     }
+    // },3000)
+    console.log(this.props.slug)
     if (this.props.post.length > 0) {
       console.log(this.props.post)      
       this.elem = <ArticleDetail post={this.props.post[0]} />
       console.log(this.elem)              
-    }
-  },3000)
+      }
   }
 
   render () { 
-    this.elem = <ReadPageHolder /> 
-    
-    if (this.props.post.length > 0) {
-      console.log(this.props.post)      
-      this.elem = <ArticleDetail post={this.props.post[0]} />
-      console.log(this.elem)              
-    }         
     return (
       <div>
         <section >  

@@ -9,6 +9,7 @@ class ArticleCard extends React.Component {
   
   render () {
     let { post, media, category } = this.props
+    let author = post._embedded.author['0']
     let feature_media = post._embedded['wp:featuredmedia']['0']
     console.log(feature_media)
     let FeaturedImage = 'http://via.placeholder.com/350x200'    
@@ -26,7 +27,7 @@ class ArticleCard extends React.Component {
         <Col xs={9} md={12}>
           <div className='article-meta'>
             {/* <p><TimeAgo date={ "2017-05-27T11:17:18" } /> by <b>Adjie Guntoro</b></p> */}
-            <p><TimeAgo date={ post.date_gmt } /> by <b>Adjie Guntoro</b></p>
+            <p className='is-info'><TimeAgo date={ post.date_gmt } /> by <b><span > { author.name} </span></b></p>
                 {/* href={`/read/${post.slug}`} */}
             <h2 className=' article-item-title is-size-6 '>
               <Link to={`/read/${post.slug}`} className='is-info has-text-grey-dark' >
