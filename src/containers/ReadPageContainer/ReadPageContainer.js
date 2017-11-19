@@ -38,8 +38,8 @@ class ReadPageContainer extends Component {
 
   renderArticle(){ 
     this.post = this.props.post[0]
-    console.log(this.post)
-    if(this.post) {
+    console.log(this.props.slug)
+    if(this.post && this.props.slug == this.post.slug) {
       return <ArticleDetail post={this.post} />
     } else {
       return <ReadPageHolder /> 
