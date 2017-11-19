@@ -16,43 +16,45 @@ import {
 class ReadPageContainer extends Component {
   constructor (props){
     super()
-    // this.dispatchMedia = dispatchMedia
-     
-   
+    this.post = {}
+    this.isLoading = true
+    
   }
   
   
   componentWillMount () {
-    this.elem = <ReadPageHolder />
-    console.log(this.props)          
-    // this.props.dispatchPost(this.props.slug)             
+    console.log("will mount read page")       
+    this.props.dispatchPost(this.props.slug)             
   }
 
-  componentDidMount(){
-    this.props.dispatchPost(this.props.slug)
-    // setTimeout(() => {
-    //   console.log(this.props.slug)
-    //   if (this.props.post.length > 0) {
-    //     console.log(this.props.post)      
-    //     this.elem = <ArticleDetail post={this.props.post[0]} />
-    //     console.log(this.elem)              
-    //     }
-    // },3000)
-    console.log(this.props.slug)
-    if (this.props.post.length > 0) {
-      console.log(this.props.post)      
-      this.elem = <ArticleDetail post={this.props.post[0]} />
-      console.log(this.elem)              
-      }
+  componentDidMount(){  
+    console.log("did mount read page")     
   }
+
+  componentWillReceiveProps(nextProps){
+    console.log("componentWillReceiveProps")         
+    this.post = {}   
+  }
+
+  renderArticle(){ 
+    this.post = this.props.post[0]
+    console.log(this.post)
+    if(this.post) {
+      return <ArticleDetail post={this.post} />
+    } else {
+      return <ReadPageHolder /> 
+    }
+  }
+
 
   render () { 
+    
     return (
       <div>
         <section >  
             <div className='columns'>
               <div className='column is-offset-2 is-8'>
-                { this.elem }
+                { this.renderArticle() }
               </div>
           </div>
         </section>

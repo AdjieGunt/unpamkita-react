@@ -10,7 +10,7 @@
 
 .feature-media-wrapper {
   margin: 25px 10px;
-  height: 3800px;
+  height: 380px;
 }
 
 @keyframes placeHolderShimmer{
@@ -23,7 +23,7 @@
 }
 
 .animated-background {
-  animation-duration: 0.8s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
   animation-name: placeHolderShimmer;

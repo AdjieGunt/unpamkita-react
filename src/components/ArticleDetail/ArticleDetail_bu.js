@@ -16,57 +16,16 @@ class ArticleDetail extends React.Component {
   
   constructor (props){
     super()
-    // this.post = {}
-    // this.author = {}
-    // this.term = {}
-    // this.FeaturedImage = ""
-  }
-
-  componentWillReceiveProps(nextProps){
-    console.log('ReceiveProp')
     this.post = {}
-    this.author = {}
-    this.term = {}
-    // this.FeaturedImage = ""
-    console.log(this.post)
   }
 
-  shouldComponentUpdate(nextProps, nextState){
-    console.log('should component update')
-    return true
+  componentWillReceiveProps(){
+    console.log('will un mount')
   }
 
-  componentWillUpdate(nextProps){
-    this.post.post = nextProps.post
-    this.author = nextProps.post._embedded['author']['0']
-    this.term = nextProps.post._embedded['wp:term']['0']
-    // this.FeaturedImage = ""
-    let feature_media = nextProps.post._embedded['wp:featuredmedia']['0']
-    if ( typeof feature_media.media_details.sizes.thumbnail !== 'undefined') {
-      this.FeaturedImage = feature_media.media_details.sizes.full.source_url
-    } else {
-      this.FeaturedImage = feature_media.media_details.sizes.medium.source_url      
-    }
-    console.log(this.post)    
-  }
-
-  componentWillUnMount(){
-    console.log('tes')
-  }
-
-  componentWillMount(){
+  componentDidMount(){
     console.log(this.props.post)
     console.log(this.post)
-    const { post } = this.props
-    this.post = this.props
-    let feature_media = post._embedded['wp:featuredmedia']['0']
-    if ( typeof feature_media.media_details.sizes.thumbnail !== 'undefined') {
-      this.FeaturedImage = feature_media.media_details.sizes.full.source_url
-    } else {
-      this.FeaturedImage = feature_media.media_details.sizes.medium.source_url      
-    }
-    this.author = post._embedded['author']['0']
-    this.term = post._embedded['wp:term']['0']
   }
 
   render () {
@@ -89,16 +48,25 @@ class ArticleDetail extends React.Component {
     const GooglePlusIcon = generateShareIcon('google')
     const WhatsappIcon = generateShareIcon('whatsapp')
     const EmailIcon = generateShareIcon('email')
-    
-    let post = this.post.post
-    let term = this.term
-    let author = this.author
 
-    console.log(post)
+  //  let post = this.post
+   const {post} = this.props
+  //  this.post = post
+   let feature_media = post._embedded['wp:featuredmedia']['0']
+   console.log(post._embedded)
+   let FeaturedImage = 'http://via.placeholder.com/350x200'    
+   if ( typeof feature_media.media_details.sizes.thumbnail !== 'undefined') {
+     FeaturedImage = feature_media.media_details.sizes.full.source_url
+   } else {
+     FeaturedImage = feature_media.media_details.sizes.medium.source_url      
+   }
+
+   let author = post._embedded['author']['0']
+   let term = post._embedded['wp:term']['0']
     return (
       <div>
         <div className='is-single'>
-          <Breadcrumbs term={term[0].name}/>
+          <Breadcrumbs title={post.title.rendered} term={term[0].name}/>
           <section className='section__header'>
             <div className='article-title section__header-title'>
               <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
@@ -163,8 +131,8 @@ class ArticleDetail extends React.Component {
           </section>
           
           <figure className='image article-featured-image is-2by1'>
-              <img src={this.FeaturedImage} alt='Gambar artikel' className='lazy lazyLoaded' />
-              <span className='caption'>Caption tes </span>
+              <img src={FeaturedImage} alt='Gambar artikel' className='lazy lazyLoaded' />
+            <caption>aa</caption>
           </figure>
 
           <section className='section'>

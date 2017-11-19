@@ -26,7 +26,7 @@ export function loadPostBySlug (slug) {
     return postsAPI.getPostBySlug(slug).then(post => {
       dispatch(LoadPostBySlugSuccess(post))
     }).catch(error => {
-      dispatch(LoadPostBySlugFailed(error))
+      throw (error)
     })
   }
 }
