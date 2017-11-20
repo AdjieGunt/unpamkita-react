@@ -60,7 +60,7 @@ class ArticleDetail extends React.Component {
     const { post } = this.props
     this.post = this.props
     let feature_media = post._embedded['wp:featuredmedia']['0']
-    if ( typeof feature_media.media_details.sizes.thumbnail !== 'undefined') {
+    if (typeof feature_media.media_details.sizes.thumbnail !== 'undefined') {
       this.FeaturedImage = feature_media.media_details.sizes.full.source_url
     } else {
       this.FeaturedImage = feature_media.media_details.sizes.medium.source_url      
@@ -172,7 +172,7 @@ class ArticleDetail extends React.Component {
               <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
             </div>
             <FacebookProvider appId='373119386442338'>
-              <Comments width='100%' href={config.APP_URL + '/' + post.slug} />
+              <Comments width='100%' href={config.APP_URL + '/read/' + post.slug} />
             </FacebookProvider>
             {/* <div className='tags'>
               <span className='tag is-info'>Unpam</span>

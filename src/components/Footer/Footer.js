@@ -10,8 +10,8 @@ class Footer extends React.Component {
       <footer className="footer">
         <div className="container">
             <div className="content has-text-centered">
-            <p>
-                <strong>Unpamkita.com</strong> All rights reserved. Copyright 2017
+            <p className='is-size-7'>
+                <strong>Unpamkita.com</strong> - All rights reserved. Copyright 2017
             </p>
             </div>
         </div>

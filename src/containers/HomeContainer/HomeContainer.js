@@ -6,7 +6,7 @@ import FeaturedPost from './../../components/FeaturedPosts/FeaturedPost'
 import StoryListing from './../../components/StoryListing/StoryListing'
 import ArticleList from './../../components/ArticleList'
 
-// import HeroInfo from './../../components/Hero/HeroInfo/HeroInfo'
+import HeroInfo from './../../components/Hero/HeroInfo/HeroInfo'
 import Footer from './../../components/Footer/Footer'
 import { connect } from 'react-redux'
 import Spinner from './../../components/Spinner'
@@ -38,14 +38,9 @@ class HomeContainer extends React.Component {
             media={this.props.media}
             categories={this.props.categories}
           />
-          {/* <StoryListing
-            listingtitle='Latest Post'
-            posts={this.props.posts}
-            media={this.props.media}
-            categories={this.props.categories}
-          /> */}
+          
         </div>
-        
+        <HeroInfo />  
         <Footer />
         </div>
       )

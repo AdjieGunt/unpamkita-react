@@ -31,6 +31,17 @@ export function loadPostBySlug (slug) {
   }
 }
 
+// Load post by category
+export function loadPostsByCategory (category) {
+  return function (dispatch) {
+    return postsAPI.getPostsByCategory(category).then(posts => {
+      dispatch(loadPostsByCategory(posts))
+    }).catch(error => {
+      throw (error)
+    })
+  }
+}
+
 export function LoadPostBySlugSuccess (post) {
   return { type : types.LOAD_POSTS_BY_SLUG_SUCCESS, post }
 }

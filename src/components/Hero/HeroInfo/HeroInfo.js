@@ -4,17 +4,19 @@ import './HeroInfo.scss'
 class HeroInfo extends React.Component {
   render () {
     return (
-      <section className="hero is-medium is-primary is-bold">
-        <div className="hero-body container has-text-centered">
-            <div className="container">
-            <h1 className="title">
-                Kirimkan tulisanmu ke unpamkita
+      <section className="hero is-info is-bold">
+        <div className="hero-body has-text-centered">
+            <h1 className="title is-size-4">
+                Mari berkontribusi untuk komunitas Unpamkita!
             </h1>
-            <br/>
             <h2 className="subtitle">
-                Kamu berkesempatan untuk menuliskan ceritamu melalui Unpamkita, <br/> dan dibaca ribuan pembaca setiap harinya.
+                Kami tunggu artikel menarik kamu seputar keseruan kehidupan kampus. <br/>
             </h2>
-            </div>
+            <h1 className="title is-size-6">
+            Kirimkan tulisan mu ke unpamkitamedia@gmail.com
+            </h1>
+
+            
         </div>
         </section>
     )

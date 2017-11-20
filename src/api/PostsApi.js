@@ -1,6 +1,6 @@
 
 const API_URL = 'https://uk.apcasi.or.id/api/wp/v2'
-const POST_API = API_URL + '/posts?_embed'
+const POST_API = API_URL + '/posts?per_page=8&_embed'
 const MEDIA_API = API_URL + '/media?per_page=60'
 const CATEGORIES_API = API_URL + '/categories' 
 const MEDIA_BY_ID_API = API_URL + '/media'
@@ -15,6 +15,14 @@ class PostsApi {
   }
 
   static getPostBySlug (slug) {
+    return fetch(API_URL + '/posts?slug=' + slug + '&_embed').then(response => {
+      return response.json()
+    }).catch(error => {
+      return error
+    })
+  }
+
+  static getPostsByCategory(category) {
     return fetch(API_URL + '/posts?slug=' + slug + '&_embed').then(response => {
       return response.json()
     }).catch(error => {

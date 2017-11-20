@@ -6,6 +6,10 @@
   src: url(https://cdn0.tnwcdn.com/wp-content/themes/cyberdelia/assets/fonts/avalon-bold.eot?#iefix) format("embedded-opentype"), url(https://cdn0.tnwcdn.com/wp-content/themes/cyberdelia/assets/fonts/avalon-bold.woff) format("woff"), url(https://cdn0.tnwcdn.com/wp-content/themes/cyberdelia/assets/fonts/avalon-bold.ttf) format("truetype")
 }
 
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+$family-primary : 'Raleway';
+
 .page-layout__viewport {
   // padding-top: 4rem;
 }
@@ -17,6 +21,7 @@
 
 body {
   min-height: 100vh;
+  font-family: 'Raleway';
 }
 
 .lazy {
