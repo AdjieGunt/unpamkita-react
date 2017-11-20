@@ -32,7 +32,7 @@ class ArticleDetail extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    console.log('should component update')
+    // console.log('should component update')
     return true
   }
 
@@ -47,16 +47,16 @@ class ArticleDetail extends React.Component {
     } else {
       this.FeaturedImage = feature_media.media_details.sizes.medium.source_url      
     }
-    console.log(this.post)    
+    // console.log(this.post)    
   }
 
   componentWillUnMount(){
-    console.log('tes')
+    // console.log('tes')
   }
 
   componentWillMount(){
-    console.log(this.props.post)
-    console.log(this.post)
+    // console.log(this.props.post)
+    // console.log(this.post)
     const { post } = this.props
     this.post = this.props
     let feature_media = post._embedded['wp:featuredmedia']['0']

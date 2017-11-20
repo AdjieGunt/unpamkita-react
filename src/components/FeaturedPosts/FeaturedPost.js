@@ -20,7 +20,7 @@ class FeaturedPost extends React.Component {
   }
 
   render() {
-    console.log(this.props.posts)
+    // console.log(this.props.posts)
     const featuredPosts = this.props.posts;
     return(
       <div className='container'>

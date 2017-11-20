@@ -1,5 +1,6 @@
 import React from 'react'
 import './HeroInfo.scss'
+import SimpleLineIcon from 'react-simple-line-icons'
 
 class HeroInfo extends React.Component {
   render () {
@@ -13,7 +14,8 @@ class HeroInfo extends React.Component {
                 Kami tunggu artikel menarik kamu seputar keseruan kehidupan kampus. <br/>
             </h2>
             <h1 className="title is-size-6">
-            Kirimkan tulisan mu ke unpamkitamedia@gmail.com
+            Kirimkan tulisan mu ke <br/><br/>
+            <span className='tag is-light'><SimpleLineIcon name='envelope' /> &nbsp; unpamkitamedia@gmail.com</span>
             </h1>
 
             

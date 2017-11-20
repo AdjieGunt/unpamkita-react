@@ -1,6 +1,7 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
-// import './HeroHome.scss'
+import './Footer.scss'
+import SimpleLineIcon from 'react-simple-line-icons'
 
 
 class Footer extends React.Component {
@@ -11,6 +12,12 @@ class Footer extends React.Component {
         <div className="container">
             <div className="content has-text-centered">
             <p className='is-size-7'>
+                <ul className='social-media'>
+                  <li><a href='https://www.facebook.com/unpamkita'> <SimpleLineIcon name='social-facebook' /></a> </li>
+                  {/* <li><SimpleLineIcon name='social-facebook' /></li> */}
+                  <li><a href='https://www.instagram.com/unpamkita'> <SimpleLineIcon name='social-instagram' /></a></li>
+                </ul>
+                
                 <strong>Unpamkita.com</strong> - All rights reserved. Copyright 2017
             </p>
             </div>

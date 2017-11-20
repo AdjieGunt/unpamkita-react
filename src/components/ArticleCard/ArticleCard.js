@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import TimeAgo from 'react-timeago'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import { Link } from 'react-router'
+import SimpleLineIcon from 'react-simple-line-icons'
 
 class ArticleCard extends React.Component {
   
@@ -27,7 +28,7 @@ class ArticleCard extends React.Component {
         <Col xs={9} md={12}>
           <div className='article-meta'>
             {/* <p><TimeAgo date={ "2017-05-27T11:17:18" } /> by <b>Adjie Guntoro</b></p> */}
-            <p className='is-info'><TimeAgo date={ post.date_gmt } /> by <b><span > { author.name} </span></b></p>
+            <p className='is-info'><TimeAgo date={ post.date_gmt } /> by <b> { author.name} </b></p>
                 {/* href={`/read/${post.slug}`} */}
             <h2 className=' article-item-title is-size-6 '>
               <Link to={`/read/${post.slug}`} className='is-info has-text-grey-dark' >

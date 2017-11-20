@@ -1,0 +1,16 @@
+
+ul.social-media{
+  display: table;
+  list-style: none;
+  margin: 0 auto;
+  li {
+    // float:left;
+    display: table-cell;
+    padding: 0 0.3rem;
+    vertical-align:middle;
+    text-align:center;
+    a {
+      color:#000;
+    }
+  }
+}
