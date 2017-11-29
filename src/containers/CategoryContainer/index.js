@@ -1,3 +1,3 @@
-import ReadPageContainer from './ReadPageContainer'
+import CategoryContainer from './CategoryContainer'
 
-export default ReadPageContainer
+export default CategoryContainer

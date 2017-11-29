@@ -5,6 +5,9 @@ import { connect } from 'react-redux'
 import { loadMediaById, loadPostBySlug } from './../../actions/PostActions'
 // import Spinner from './../../components/Spinner'
 import ReadPageHolder from './../../components/ReadPageHolder'
+import ArticleList from './../../components/ArticleList'
+
+
 
 import {
   ShareButtons,
@@ -54,7 +57,7 @@ class CategoryContainer extends Component {
         <section >  
             <div className='columns'>
               <div className='column is-offset-2 is-8'>
-                { this.renderArticle() }
+                {/* <ArticleList posts={this.props.posts}/> */}
               </div>
           </div>
         </section>
@@ -92,10 +95,10 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 }
 
 
-ReadPageContainer.propTypes = {
+CategoryContainer.propTypes = {
   slug: PropTypes.string,
   media:PropTypes.array,
   posts:PropTypes.array
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ReadPageContainer)
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(CategoryContainer)

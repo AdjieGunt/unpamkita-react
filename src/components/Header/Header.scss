@@ -19,3 +19,7 @@ header {
     position: relative;
 }
 
+.navbar-link.is-active, .navbar-link:hover, a.navbar-item.is-active, a.navbar-item:hover {
+    background-color: #fff;
+    color: #0a0a0a;
+}

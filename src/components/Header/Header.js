@@ -22,7 +22,7 @@ class Header extends React.Component {
     return (
     // <header className='has-shadow'>
       
-        <nav className='navbar has-shadow'>
+        <nav className='navbar is-fixed-top has-shadow'>
           <div className='container'>
           <div className='navbar-brand'>
             <Link to='/' className='navbar-item' href='/'>
@@ -36,14 +36,13 @@ class Header extends React.Component {
           </div>
           <div id='navMenuDocumentation' className={`navbar-menu ${isActive}`}>
             <div className='navbar-start'>
-              <a href='#' className='navbar-item'>Home</a>
-              <a href='#' className='navbar-item'>Artikel</a>
-              <a href='#' className='navbar-item'>Kabar Kampus</a>
-              <a href='#' className='navbar-item'>Viral</a>
-              <a href='#' className='navbar-item'>Rekomendasi</a>
-              <a href='#' className='navbar-item'>Kabar Dosen</a>
-              <a href='#' className='navbar-item'>Kabar Alumni</a>
-              <a href='#' className='navbar-item'>Event</a>
+              {/* <Link to='/' className='navbar-item'>Home</Link> */}
+              <Link to='/topic/ngampus' className='navbar-item is-tab'>Ngampus</Link>              
+              <Link to='/topic/opini' className='navbar-item is-tab'>Opini</Link>
+              <Link to='/topic/kabar-alumni' className='navbar-item is-tab'>Kabar Alumni</Link>
+              <Link to='/topic/acara-kampus' className='navbar-item is-tab'>Acara Kampus</Link>
+            </div>
+            <div className='navbar-end'>
               <div className='navbar-item'>
                 <a className='button is-info' href='#'>
                   <span>Kirim Tulisan</span>
