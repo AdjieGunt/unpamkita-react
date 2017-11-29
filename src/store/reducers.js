@@ -5,6 +5,8 @@ import media from './../reducers/MediaReducer'
 import singleMedia from './../reducers/MediaByIdReducer'
 import categories from './../reducers/CategoriesReducer'
 import post from './../reducers/SinglePostReducer'
+import category from './../reducers/CategoryReducer'
+
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
@@ -12,6 +14,7 @@ export const makeRootReducer = (asyncReducers) => {
     media: media,
     posts: posts,
     post:post,
+    category: category,
     categories: categories,
     singleMedia:singleMedia,
     ...asyncReducers

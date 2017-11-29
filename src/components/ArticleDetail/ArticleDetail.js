@@ -110,7 +110,7 @@ class ArticleDetail extends React.Component {
 
     const excerpt = this.cleanExcerpt(post.excerpt.rendered)
 
-    console.log(post)
+    // console.log(post)
     return (
       <div>
         <div className='is-single'>

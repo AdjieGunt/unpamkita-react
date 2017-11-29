@@ -100,3 +100,19 @@ export function loadMediaById (id) {
 export function LoadMediaByIdSuccess (singleMedia) {
   return { type: types.LOAD_MEDIA_BY_ID_SUCCESS, singleMedia }
 }
+
+// load category by slug
+
+export function loadCategoryBySlug (slug) {
+  return function (dispatch) {
+    return postsAPI.getCategoryBySlug(slug).then(category => {
+      dispatch(LoadCategoryBySlugSuccess(category))
+    }).catch(error => {
+      throw (error)
+    })
+  }
+}
+
+export function LoadCategoryBySlugSuccess (category) {
+  return { type: types.LOAD_CATEGORY_BY_SLUG_SUCCESS, category }
+}

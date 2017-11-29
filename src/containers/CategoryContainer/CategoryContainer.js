@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ArticleDetail from './../../components/ArticleDetail/ArticleDetail'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { loadMediaById, loadPostBySlug } from './../../actions/PostActions'
+import { loadMediaById, loadPostBySlug, loadCategoryBySlug } from './../../actions/PostActions'
 // import Spinner from './../../components/Spinner'
 import ReadPageHolder from './../../components/ReadPageHolder'
 import ArticleList from './../../components/ArticleList'
@@ -26,11 +26,12 @@ class CategoryContainer extends Component {
   
   
   componentWillMount () {
-    console.log("will mount read page")       
-    this.props.dispatchPost(this.props.slug)             
+    console.log(this.props)       
+    this.props.dispatchCategory(this.props.slug)             
   }
 
-  componentDidMount(){  
+  componentDidMount(){ 
+    console.log(this.props) 
     console.log("did mount read page")     
   }
 
@@ -69,7 +70,8 @@ class CategoryContainer extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     post: state.post,
-    singleMedia: state.singleMedia
+    singleMedia: state.singleMedia,
+    category : state.category
   }
 }
 
@@ -80,6 +82,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     singlePost: (slug) => {
       dispatch(loadPostBySlug(slug))
+    },
+    category: (slug) => {
+      dispatch(loadCategoryBySlug(slug))
     }
   }
 }
@@ -88,9 +93,11 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     return {
         ...ownProps,
         post: stateProps.post,
+        category : stateProps.category,
         singleMedia: stateProps.singleMedia,
         dispatchMedia :dispatchProps.dispatchMedia,
-        dispatchPost: dispatchProps.singlePost
+        dispatchPost: dispatchProps.singlePost,
+        dispatchCategory: dispatchProps.category
         }
 }
 

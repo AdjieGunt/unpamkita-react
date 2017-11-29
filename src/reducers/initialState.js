@@ -5,5 +5,6 @@ export default {
   loading : true,
   media : [],
   categories : [],
-  singleMedia : {}
+  singleMedia : {},
+  category : []
 }

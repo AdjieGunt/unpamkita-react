@@ -23,7 +23,7 @@ class ReadPageContainer extends Component {
   
   
   componentWillMount () {
-    console.log("will mount read page")       
+    // console.log("will mount read page")       
     this.props.dispatchPost(this.props.slug)             
   }
 
@@ -32,7 +32,7 @@ class ReadPageContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    console.log("componentWillReceiveProps")         
+    // console.log("componentWillReceiveProps")         
     this.post = {}   
   }
 
