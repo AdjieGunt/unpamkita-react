@@ -10,8 +10,8 @@ class Footer extends React.Component {
     return (
       <footer className="footer">
         <div className="container">
-            <div className="content has-text-centered">
-            <p className='is-size-7'>
+            <div className="content">
+            <div className='is-size-7'>
                 <ul className='social-media'>
                   <li><a href='https://www.facebook.com/unpamkita'> <SimpleLineIcon name='social-facebook' /></a> </li>
                   {/* <li><SimpleLineIcon name='social-facebook' /></li> */}
@@ -19,7 +19,7 @@ class Footer extends React.Component {
                 </ul>
                 
                 <strong>Unpamkita.com</strong> - All rights reserved. Copyright 2017
-            </p>
+            </div>
             </div>
         </div>
     </footer>

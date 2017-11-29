@@ -28,6 +28,7 @@ class ArticleDetail extends React.Component {
     this.author = {}
     this.term = {}
     // this.FeaturedImage = ""
+    this.full_url = ""
     console.log(this.post)
   }
 
@@ -47,11 +48,17 @@ class ArticleDetail extends React.Component {
     } else {
       this.FeaturedImage = feature_media.media_details.sizes.medium.source_url      
     }
-    // console.log(this.post)    
+    // console.log(this.post)  
+    this.full_url = config.APP_URL + '/read/' + this.post.post.slug;  
   }
 
   componentWillUnMount(){
     // console.log('tes')
+  }
+
+  componentDidMount(){
+    document.title = this.props.post.title.rendered + ' - Unpamkita.com'
+    this.full_url = config.APP_URL + '/read/' + this.post.post.slug;
   }
 
   componentWillMount(){
@@ -67,7 +74,14 @@ class ArticleDetail extends React.Component {
     }
     this.author = post._embedded['author']['0']
     this.term = post._embedded['wp:term']['0']
+    this.full_url = config.APP_URL + '/read/' + this.post.post.slug;
   }
+
+  cleanExcerpt(html){
+   return html.replace(/(<([^>]+)>)/ig ,'').replace('[&hellip;]','').replace(/(&([^>]+);)/ig,'')
+  }
+
+  
 
   render () {
     const {
@@ -94,6 +108,8 @@ class ArticleDetail extends React.Component {
     let term = this.term
     let author = this.author
 
+    const excerpt = this.cleanExcerpt(post.excerpt.rendered)
+
     console.log(post)
     return (
       <div>
@@ -113,22 +129,22 @@ class ArticleDetail extends React.Component {
                   <div className='cloumn is-4 is-hidden-mobile'>
                     <div className='columns share-button-area__desktop is-mobile'>
                       <div className='column is-3 '>
-                        <FacebookShareButton quote={post.excerpt.rendered} url="http://unpamkita.com">
+                        <FacebookShareButton quote={excerpt} url={this.full_url}>
                           <FacebookIcon size={42} />
                         </FacebookShareButton>
                       </div>
                       <div className='column is-3'>                      
-                        <TwitterShareButton quote={post.excerpt.rendered} url="http://unpamkita.com">
+                        <TwitterShareButton quote={excerpt} url={this.full_url}>
                           <TwitterIcon size={42} />
                         </TwitterShareButton>
                       </div>
                       <div className='column is-3'>                      
-                        <GooglePlusShareButton quote={post.excerpt.rendered} url="http://unpamkita.com">
+                        <GooglePlusShareButton quote={excerpt} url={this.full_url}>
                           < GooglePlusIcon size={42} />
                         </GooglePlusShareButton>
                       </div>
                       <div className='column is-3'>                      
-                        <WhatsappShareButton quote={post.excerpt.rendered} url="http://unpamkita.com">
+                        <WhatsappShareButton quote={excerpt} url={this.full_url}>
                           <WhatsappIcon size={42} />
                         </WhatsappShareButton>
                       </div>
@@ -137,22 +153,22 @@ class ArticleDetail extends React.Component {
                 <div className='cloumn is-4 is-hidden-tablet'>
                     <div className='columns is-mobile' style={{marginLeft:'0px'}}>
                       <div className='column is-2 '>
-                        <FacebookShareButton quote={post.excerpt.rendered} url="http://unpamkita.com">
+                        <FacebookShareButton quote={post.excerpt.rendered} url={this.full_url}>
                           <FacebookIcon size={32} />
                         </FacebookShareButton>
                       </div>
                       <div className='column is-2'>                      
-                        <TwitterShareButton quote={post.excerpt.rendered} url="http://unpamkita.com">
+                        <TwitterShareButton quote={post.excerpt.rendered} url={this.full_url}>
                           <TwitterIcon size={32} />
                         </TwitterShareButton>
                       </div>
                       <div className='column is-2'>                      
-                        <GooglePlusShareButton quote={post.excerpt.rendered} url="http://unpamkita.com">
+                        <GooglePlusShareButton quote={post.excerpt.rendered} url={this.full_url}>
                           < GooglePlusIcon size={32} />
                         </GooglePlusShareButton>
                       </div>
                       <div className='column is-2'>                      
-                        <WhatsappShareButton quote={post.excerpt.rendered} url="http://unpamkita.com">
+                        <WhatsappShareButton quote={post.excerpt.rendered} url={this.full_url}>
                           <WhatsappIcon size={32} />
                         </WhatsappShareButton>
                       </div>
@@ -172,7 +188,7 @@ class ArticleDetail extends React.Component {
               <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
             </div>
             <FacebookProvider appId='373119386442338'>
-              <Comments width='100%' href={config.APP_URL + '/read/' + post.slug} />
+              <Comments width='100%' href={this.full_url} />
             </FacebookProvider>
             {/* <div className='tags'>
               <span className='tag is-info'>Unpam</span>

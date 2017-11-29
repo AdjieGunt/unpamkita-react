@@ -17,7 +17,9 @@ import { loadMedia, loadPosts, loadCategories } from './../../actions/PostAction
 class HomeContainer extends React.Component {
  
   componentDidMount(){
-    this.props.dispatchData()  
+    this.props.dispatchData()
+    document.title = 'Unpamkita.com'
+    
   }
 
   render () {
