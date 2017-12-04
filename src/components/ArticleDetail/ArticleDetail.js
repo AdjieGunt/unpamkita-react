@@ -6,6 +6,7 @@ import ArticleMeta from '../ArticleMeta'
 import LazyLoad from 'react-lazy-load'
 import Breadcrumbs from '../Breadcrumbs'
 import * as config from '../../constants/Constants'
+import MetaTags from 'react-meta-tags'
 import {
   ShareButtons,
   ShareCounts,
@@ -113,6 +114,11 @@ class ArticleDetail extends React.Component {
     // console.log(post)
     return (
       <div>
+        <MetaTags>
+            <meta name="description" content={excerpt} />
+            <meta property="og:title" content={post.title.rendered} />
+            <meta property="og:image" content={this.FeaturedImage} />
+        </MetaTags>
         <div className='is-single'>
           <Breadcrumbs term={term[0].name}/>
           <section className='section__header'>

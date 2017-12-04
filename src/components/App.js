@@ -4,6 +4,9 @@ import { Provider } from 'react-redux'
 import PropTypes from 'prop-types'
 import Moment from 'react-moment'
 import 'moment-timezone'
+import ReactGA from 'react-ga'
+ReactGA.initialize('UA-000000-01')
+ReactGA.pageview(window.location.pathname + window.location.search)
 
 class App extends React.Component {
   static propTypes = {

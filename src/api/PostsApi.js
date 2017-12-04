@@ -1,5 +1,5 @@
 
-const API_URL = 'https://uk.apcasi.or.id/api/wp/v2'
+const API_URL = 'https://uk.apcasi.or.id/wp-json/wp/v2'
 const POST_API = API_URL + '/posts?per_page=8&_embed'
 const MEDIA_API = API_URL + '/media?per_page=60'
 const CATEGORIES_API = API_URL + '/categories' 
