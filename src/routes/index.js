@@ -4,6 +4,8 @@ import Home from './Home'
 import CounterRoute from './Counter'
 import Read from './Read'
 import Topic from './Topic'
+import Editor from './Editor'
+
 
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -14,7 +16,7 @@ export const createRoutes = (store) => ({
   component   : CoreLayout,
   indexRoute  : Home,
   childRoutes : [
-    CounterRoute(store), Read(store), Topic(store)
+    CounterRoute(store), Read(store), Topic(store), Editor(store)
   ]
 })
 
