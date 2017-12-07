@@ -31,17 +31,6 @@ export function loadPostBySlug (slug) {
   }
 }
 
-// Load post by category
-export function loadPostsByCategory (category) {
-  return function (dispatch) {
-    return postsAPI.getPostsByCategory(category).then(posts => {
-      dispatch(loadPostsByCategory(posts))
-    }).catch(error => {
-      throw (error)
-    })
-  }
-}
-
 export function LoadPostBySlugSuccess (post) {
   return { type : types.LOAD_POSTS_BY_SLUG_SUCCESS, post }
 }
@@ -50,7 +39,20 @@ export function LoadPostBySlugFailed (error) {
   return { type : types.LOAD_POSTS_BY_SLUG_FAILED, error }
 }
 
+// Load post by category
+export function loadPostsByCategory (IdCategory) {
+  return function (dispatch) {
+    return postsAPI.getPostsByCategory(IdCategory).then(posts => {
+      dispatch(LoadPostByCategorySuccess(posts))
+    }).catch(error => {
+      throw (error)
+    })
+  }
+}
 
+export function LoadPostByCategorySuccess (posts) {
+  return { type : types.LOAD_POSTS_BY_CATEGORY_SUCCESS, posts }
+}
 
 // Load All Media
 export function loadMedia () {

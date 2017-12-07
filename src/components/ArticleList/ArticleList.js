@@ -4,8 +4,7 @@ import ArticleCard from './../ArticleCard/ArticleCard'
 // import 'bootstrap-4-grid'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 // import FeaturedImage from './assets/sarjana.jpg'
-import TimeAgo from 'react-timeago'
-
+// import TimeAgo from 'react-timeago'
 
 class ArticleList extends React.Component {
   arrayHelper = (arr, length) => {
@@ -42,8 +41,19 @@ class ArticleList extends React.Component {
     return newArray
   }
 
+  componentWillReceiveProps (nextProps) {
+    // console.log('hiiiiiiiiiiiiiiiiii')
+    this.posts = nextProps.posts
+    // console.log(this.posts)    
+  }
+
+  shouldComponentUpdate () {
+    return true
+  }
+
   render () {
-    // console.log("Component Render")
+    this.posts = this.props.posts 
+    // console.log(this.posts)
     // console.log(this.arrayHelper(this.props.posts, 4))
     // const postsSlice = this.arrayHelper(this.props.posts, 4)    
     return (
@@ -55,19 +65,19 @@ class ArticleList extends React.Component {
             </Col>
           </Row>
           <Row>
-          {
-            this.props.posts.map((post, index) => {
-              return(
-                <Col xs={12} md={3} key={index}>
-                  <ArticleCard 
-                  post={post}
-                  media={this.getMediaById(post.featured_media)}
-                  category={this.getCategoryById(post.categories[0])}
-                   />   
-              </Col>
-              )
-            })
-          }
+            {
+              this.posts.map((post, index) => {
+                return (
+                  <Col xs={12} md={3} key={index}>
+                    <ArticleCard
+                      post={post}
+                    // media={this.getMediaById(post.featured_media)}
+                    // category={this.getCategoryById(post.categories[0])}
+                    />
+                  </Col>
+                )
+              })
+            }
           </Row>
         </Grid>
       </div>

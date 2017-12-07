@@ -23,8 +23,8 @@ class PostsApi {
     })
   }
 
-  static getPostsByCategory(category) {
-    return fetch(API_URL + '/posts?slug=' + slug + '&_embed').then(response => {
+  static getPostsByCategory (IdCategory) {
+    return fetch(API_URL + '/posts?categories=' + IdCategory + '&_embed').then(response => {
       return response.json()
     }).catch(error => {
       return error
@@ -63,7 +63,5 @@ class PostsApi {
     })
   }
 }
-
-
 
 export default PostsApi

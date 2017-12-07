@@ -1,7 +1,7 @@
 import React from 'react'
 import './Header.scss'
 import logo from './../../../public/assets/unpamkita-logo-small.png'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 class Header extends React.Component {
   constructor (props) {
     super(props)
@@ -17,11 +17,14 @@ class Header extends React.Component {
     })
   }
 
+  handleClick = (path) => {
+    browserHistory.push(path)
+  }
+
   render () {
     let isActive = this.state.isActive ? 'is-active' : ''
     return (
     // <header className='has-shadow'>
-      
         <nav className='navbar is-fixed-top has-shadow'>
           <div className='container'>
           <div className='navbar-brand'>
@@ -37,10 +40,12 @@ class Header extends React.Component {
           <div id='navMenuDocumentation' className={`navbar-menu ${isActive}`}>
             <div className='navbar-start'>
               {/* <Link to='/' className='navbar-item'>Home</Link> */}
-              <Link to='/topic/ngampus' className='navbar-item is-tab'>Ngampus</Link>              
-              <Link to='/topic/opini' className='navbar-item is-tab'>Opini</Link>
-              <Link to='/topic/kabar-alumni' className='navbar-item is-tab'>Kabar Alumni</Link>
-              <Link to='/topic/acara-kampus' className='navbar-item is-tab'>Acara Kampus</Link>
+              <a onClick={(e) => this.handleClick('/topic/ngampus')} className='navbar-item is-tab'>Ngampus</a>
+              <a onClick={(e) => this.handleClick('/topic/opini')} className='navbar-item is-tab'>Opini</a>
+              <a onClick={(e) => this.handleClick('/topic/kabar-alumni')} className='navbar-item is-tab'>Kabar Alumni</a>
+              <a onClick={(e) => this.handleClick('/topic/acara-kampus')} className='navbar-item is-tab'>Event</a>
+              {/* <Link to='/topic/kabar-alumni' className='navbar-item is-tab'>Kabar Alumni</Link>
+              <Link to='/topic/acara-kampus' className='navbar-item is-tab'>Acara Kampus</Link> */}
             </div>
             <div className='navbar-end'>
               <div className='navbar-item'>
@@ -52,8 +57,6 @@ class Header extends React.Component {
           </div>
           </div>
         </nav>
-     
-      
     // </header>
     )
   }

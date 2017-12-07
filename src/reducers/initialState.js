@@ -6,5 +6,6 @@ export default {
   media : [],
   categories : [],
   singleMedia : {},
-  category : []
+  category : [],
+  postsByCategory: []
 }

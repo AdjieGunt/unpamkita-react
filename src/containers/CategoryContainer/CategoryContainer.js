@@ -1,65 +1,101 @@
 import React, { Component } from 'react'
-import ArticleDetail from './../../components/ArticleDetail/ArticleDetail'
+// import ArticleDetail from './../../components/ArticleDetail/ArticleDetail'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { loadMediaById, loadPostBySlug, loadCategoryBySlug } from './../../actions/PostActions'
-// import Spinner from './../../components/Spinner'
-import ReadPageHolder from './../../components/ReadPageHolder'
+import { loadMediaById, loadPostsByCategory, loadCategoryBySlug } from './../../actions/PostActions'
+import Spinner from './../../components/Spinner'
 import ArticleList from './../../components/ArticleList'
-
-
-
-import {
-  ShareButtons,
-  ShareCounts,
-  generateShareIcon
-} from 'react-share';
-
+import axios from 'axios'
 
 class CategoryContainer extends Component {
-  // constructor (props){
-  //   super()
-  //   this.post = {}
-  //   this.isLoading = true
-    
-  // }
-  
-  
-  componentWillMount () {
-    console.log(this.props)       
-    this.props.dispatchCategory(this.props.slug)             
-  }
-
-  componentDidMount(){ 
-    console.log(this.props) 
-    console.log("did mount read page")     
-  }
-
-  componentWillReceiveProps(nextProps){
-    console.log("componentWillReceiveProps")         
-    this.post = {}   
-  }
-
-  renderArticle(){ 
-    this.post = this.props.post[0]
-    console.log(this.props.slug)
-    if(this.post && this.props.slug == this.post.slug) {
-      return <ArticleDetail post={this.post} />
-    } else {
-      return <ReadPageHolder /> 
+  constructor (props) {
+    super(props)
+    // console.log('construct')
+    this.state = {
+      categories : [],
+      categoryName : '',
+      categorySlug : '',
+      posts: [],
+      isLoading : true
     }
   }
 
+  getCategory (slug) {
+    return axios.get('https://uk.apcasi.or.id/wp-json/wp/v2/categories?slug=' + slug)
+  }
 
-  render () { 
-    
+  fecthData () {
+    this.getCategory(this.props.slug)
+        .then(response => {
+          let cat = response.data
+          this.props.dispatchPosts(cat[0].id)
+          this.setState({
+            category: cat,
+            categorySlug: cat[0].slug,
+            categoryName: cat[0].name
+          })
+        })
+        .then(
+          this.setState({
+            isLoading : false
+          })
+        )
+    // console.log()
+  }
+
+  // first mount
+  componentWillMount () {
+    this.fecthData()
+  }
+
+  componentDidMount () {
+    // console.log('did mount read page')    
+    // console.log(this.props)
+  }
+
+  // update
+  componentWillReceiveProps (nextProps) {
+    // console.log('componentWillReceiveProps', nextProps)
+    this.posts = []
+    // console.log(this.props.slug !== this.state.categorySlug, nextProps.slug, this.state.categorySlug)
+    if (nextProps.slug !== this.state.categorySlug) {
+      this.fecthData()
+      // console.log('Fetching ........')
+    }
+  }
+
+  shouldComponentUpdate () {
+    // console.log(nextState)
+    return true
+  }
+
+  componentWillUpdate () {
+    // console.log(this.props.slug)
+  }
+
+  componentDidUpdate () {
+    // console.log(this.props.slug, this.state.categorySlug)  
+  }
+
+  renderArticle () {
+    this.posts = this.props.posts
+    // console.log(this.state.isLoading, this.props.slug, this.state.categorySlug)
+    // console.log(this.props.posts)
+    if (this.posts.length > 0 && this.props.slug === this.state.categorySlug) {
+      return <ArticleList listingtitle={this.state.categoryName} posts={this.posts} />
+    } else {
+      return <Spinner />
+    }
+  }
+
+  render () {
     return (
       <div>
-        <section >  
-            <div className='columns'>
-              <div className='column is-offset-2 is-8'>
-                {/* <ArticleList posts={this.props.posts}/> */}
-              </div>
+        <section className='container'>
+          <div className='columns'>
+            <div className='column'>
+              {this.renderArticle()}
+            </div>
           </div>
         </section>
       </div>
@@ -69,7 +105,7 @@ class CategoryContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    post: state.post,
+    posts: state.postsByCategory,
     singleMedia: state.singleMedia,
     category : state.category
   }
@@ -80,8 +116,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     dispatchMedia: (id) => {
       dispatch(loadMediaById(id))
     },
-    singlePost: (slug) => {
-      dispatch(loadPostBySlug(slug))
+    getPosts: (id) => {
+      dispatch(loadPostsByCategory(id))
     },
     category: (slug) => {
       dispatch(loadCategoryBySlug(slug))
@@ -90,22 +126,23 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-    return {
-        ...ownProps,
-        post: stateProps.post,
-        category : stateProps.category,
-        singleMedia: stateProps.singleMedia,
-        dispatchMedia :dispatchProps.dispatchMedia,
-        dispatchPost: dispatchProps.singlePost,
-        dispatchCategory: dispatchProps.category
-        }
+  return {
+    ...ownProps,
+    posts: stateProps.posts,
+    category : stateProps.category,
+    singleMedia: stateProps.singleMedia,
+    dispatchMedia :dispatchProps.dispatchMedia,
+    dispatchPosts: dispatchProps.getPosts,
+    dispatchCategory: dispatchProps.category
+  }
 }
-
 
 CategoryContainer.propTypes = {
   slug: PropTypes.string,
-  media:PropTypes.array,
-  posts:PropTypes.array
+  category: PropTypes.array,
+  posts: PropTypes.array,
+  dispatchCategory: PropTypes.func,
+  dispatchPosts: PropTypes.func
 }
 
 export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(CategoryContainer)

@@ -38,6 +38,7 @@ class StoryListing extends React.Component {
     return newArray
   }
 
+
   render () {
     console.log("Component Render")
     // console.log(this.arrayHelper(this.props.posts, 4))

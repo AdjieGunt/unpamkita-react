@@ -126,7 +126,6 @@ class ArticleDetail extends React.Component {
               <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
             </div>
           
-          
             <div className='article-detail-meta'>
                 <div className='columns'>
                   <div className='column is-8'>

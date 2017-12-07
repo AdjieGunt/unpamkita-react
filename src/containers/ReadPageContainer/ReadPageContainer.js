@@ -6,56 +6,51 @@ import { loadMediaById, loadPostBySlug } from './../../actions/PostActions'
 // import Spinner from './../../components/Spinner'
 import ReadPageHolder from './../../components/ReadPageHolder'
 
-import {
-  ShareButtons,
-  ShareCounts,
-  generateShareIcon
-} from 'react-share';
-
+// import {
+//   ShareButtons,
+//   ShareCounts,
+//   generateShareIcon
+// } from 'react-share';
 
 class ReadPageContainer extends Component {
-  constructor (props){
+  constructor (props) {
     super()
     this.post = {}
     this.isLoading = true
-    
   }
-  
-  
+
   componentWillMount () {
-    // console.log("will mount read page")       
-    this.props.dispatchPost(this.props.slug)             
+    // console.log("will mount read page")
+    this.props.dispatchPost(this.props.slug)
   }
 
-  componentDidMount(){  
-    console.log("did mount read page")     
+  componentDidMount () {
+    // console.log("did mount read page")
   }
 
-  componentWillReceiveProps(nextProps){
-    // console.log("componentWillReceiveProps")         
-    this.post = {}   
+  componentWillReceiveProps (nextProps) {
+    // console.log("componentWillReceiveProps")
+    this.post = {}
   }
 
-  renderArticle(){ 
+  renderArticle () {
     this.post = this.props.post[0]
     // console.log(this.props.slug)
-    if(this.post && this.props.slug == this.post.slug) {
+    if (this.post && this.props.slug === this.post.slug) {
       return <ArticleDetail post={this.post} />
     } else {
-      return <ReadPageHolder /> 
+      return <ReadPageHolder />
     }
   }
 
-
-  render () { 
-    
+  render () {
     return (
       <div>
-        <section >  
-            <div className='columns'>
-              <div className='column is-offset-2 is-8'>
-                { this.renderArticle() }
-              </div>
+        <section >
+          <div className='columns'>
+            <div className='column is-offset-2 is-8'>
+              { this.renderArticle() }
+            </div>
           </div>
         </section>
       </div>
@@ -82,20 +77,19 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-    return {
-        ...ownProps,
-        post: stateProps.post,
-        singleMedia: stateProps.singleMedia,
-        dispatchMedia :dispatchProps.dispatchMedia,
-        dispatchPost: dispatchProps.singlePost
-        }
+  return {
+    ...ownProps,
+    post: stateProps.post,
+    singleMedia: stateProps.singleMedia,
+    dispatchMedia :dispatchProps.dispatchMedia,
+    dispatchPost: dispatchProps.singlePost
+  }
 }
-
-
 ReadPageContainer.propTypes = {
   slug: PropTypes.string,
-  media:PropTypes.array,
-  posts:PropTypes.array
+  // media:PropTypes.array,
+  post:PropTypes.array,
+  dispatchPost: PropTypes.func
 }
 
 export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ReadPageContainer)
