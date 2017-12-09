@@ -1,8 +1,9 @@
 .article-form {
   position: relative;
-  left: 6rem;
+  left: 3rem;
   width: calc(100% - 6rem);
-  padding-left: 6em;
+  // padding-left: 6em;
+  padding-top: 2em;
 }
 
 label.article-title {
@@ -24,4 +25,8 @@ label {
   border-bottom: 1px solid #ddd;
   outline: none;
   padding-bottom: 1rem;
+}
+
+.editor-tools {
+  margin-bottom: 20px;
 }

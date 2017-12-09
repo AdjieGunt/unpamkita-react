@@ -36,6 +36,7 @@
     "react-facebook": "^4.0.16",
     "react-flexbox-grid": "^2.0.0",
     "react-ga": "^2.3.5",
+    "react-icons": "^2.2.7",
     "react-lazy-load": "^3.0.12",
     "react-meta-tags": "^0.3.0",
     "react-moment": "^0.6.8",

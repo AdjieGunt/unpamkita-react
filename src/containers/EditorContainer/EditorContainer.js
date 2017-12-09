@@ -27,7 +27,7 @@ class EditorContainer extends React.Component {
           <MyEditor />
           
         </div> 
-        <Footer />
+        {/* <Footer /> */}
         </div>
       )
     
