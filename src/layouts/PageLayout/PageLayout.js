@@ -2,7 +2,7 @@ import React from 'react'
 // import { IndexLink, Link } from 'react-router'
 import PropTypes from 'prop-types'
 import './PageLayout.scss'
-import 'bulma'
+// import 'bulma'
 // import 'react-flexbox-grid'
 // import 'bootstrap/dist/css/bootstrap.css'
 

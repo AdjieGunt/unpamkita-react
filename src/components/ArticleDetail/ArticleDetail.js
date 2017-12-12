@@ -3,19 +3,14 @@ import './ArticleDetail.scss'
 import PropTypes from 'prop-types'
 import FacebookProvider, { Comments } from 'react-facebook'
 import ArticleMeta from '../ArticleMeta'
-import LazyLoad from 'react-lazy-load'
+// import LazyLoad from 'react-lazy-load'
 import Breadcrumbs from '../Breadcrumbs'
 import * as config from '../../constants/Constants'
 import MetaTags from 'react-meta-tags'
-import {
-  ShareButtons,
-  ShareCounts,
-  generateShareIcon
-} from 'react-share'
+import ShareButton from './components/ShareButton'
 
 class ArticleDetail extends React.Component {
-  
-  constructor (props){
+  constructor (props) {
     super()
     // this.post = {}
     // this.author = {}
@@ -23,22 +18,21 @@ class ArticleDetail extends React.Component {
     // this.FeaturedImage = ""
   }
 
-  componentWillReceiveProps(nextProps){
-    console.log('ReceiveProp')
+  componentWillReceiveProps (nextProps) {
     this.post = {}
     this.author = {}
     this.term = {}
     // this.FeaturedImage = ""
-    this.full_url = ""
+    this.full_url = ''
     console.log(this.post)
   }
 
-  shouldComponentUpdate(nextProps, nextState){
+  shouldComponentUpdate (nextProps, nextState) {
     // console.log('should component update')
     return true
   }
 
-  componentWillUpdate(nextProps){
+  componentWillUpdate (nextProps) {
     this.post.post = nextProps.post
     this.author = nextProps.post._embedded['author']['0']
     this.term = nextProps.post._embedded['wp:term']['0']
@@ -50,19 +44,19 @@ class ArticleDetail extends React.Component {
       this.FeaturedImage = feature_media.media_details.sizes.medium.source_url      
     }
     // console.log(this.post)  
-    this.full_url = config.APP_URL + '/read/' + this.post.post.slug;  
+    this.full_url = config.APP_URL + '/read/' + this.post.post.slug 
   }
 
-  componentWillUnMount(){
+  componentWillUnMount () {
     // console.log('tes')
   }
 
-  componentDidMount(){
+  componentDidMount () {
     document.title = this.props.post.title.rendered + ' - Unpamkita.com'
     this.full_url = config.APP_URL + '/read/' + this.post.post.slug;
   }
 
-  componentWillMount(){
+  componentWillMount () {
     // console.log(this.props.post)
     // console.log(this.post)
     const { post } = this.props
@@ -76,35 +70,15 @@ class ArticleDetail extends React.Component {
     this.author = post._embedded['author']['0']
     this.term = post._embedded['wp:term']['0']
     this.full_url = config.APP_URL + '/read/' + this.post.post.slug;
+    this.captionMedia = feature_media.caption.rendered
+    this.captionMedia.replace(/(<([^>]+)>)/ig, '').replace('[&hellip;]', '').replace(/(&([^>]+);)/ig, '')
   }
 
-  cleanExcerpt(html){
-   return html.replace(/(<([^>]+)>)/ig ,'').replace('[&hellip;]','').replace(/(&([^>]+);)/ig,'')
+  cleanExcerpt (html) {
+    return html.replace(/(<([^>]+)>)/ig, '').replace('[&hellip;]', '').replace(/(&([^>]+);)/ig, '')
   }
-
-  
 
   render () {
-    const {
-      FacebookShareButton,
-      GooglePlusShareButton,
-      TwitterShareButton,
-      TelegramShareButton,
-      WhatsappShareButton,
-      EmailShareButton,
-    } = ShareButtons
-
-    const {
-      FacebookShareCount,
-      GooglePlusShareCount,
-    } = ShareCounts
-    
-    const FacebookIcon = generateShareIcon('facebook')
-    const TwitterIcon = generateShareIcon('twitter')
-    const GooglePlusIcon = generateShareIcon('google')
-    const WhatsappIcon = generateShareIcon('whatsapp')
-    const EmailIcon = generateShareIcon('email')
-    
     let post = this.post.post
     let term = this.term
     let author = this.author
@@ -115,80 +89,38 @@ class ArticleDetail extends React.Component {
     return (
       <div>
         <MetaTags>
-            <meta name="description" content={excerpt} />
-            <meta property="og:title" content={post.title.rendered} />
-            <meta property="og:image" content={this.FeaturedImage} />
+          <meta name='description' content={excerpt} />
+          <meta property='og:title' content={post.title.rendered} />
+          <meta property='og:image' content={this.FeaturedImage} />
         </MetaTags>
         <div className='is-single'>
-          <Breadcrumbs term={term[0].name}/>
+          <Breadcrumbs term={term[0].name} />
           <section className='section__header'>
             <div className='article-title section__header-title'>
               <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
             </div>
-          
             <div className='article-detail-meta'>
-                <div className='columns'>
-                  <div className='column is-8'>
-                    <ArticleMeta date={post.date_gmt} author={author} />
-                  </div>
-                  <div className='cloumn is-4 is-hidden-mobile'>
-                    <div className='columns share-button-area__desktop is-mobile'>
-                      <div className='column is-3 '>
-                        <FacebookShareButton quote={excerpt} url={this.full_url}>
-                          <FacebookIcon size={42} />
-                        </FacebookShareButton>
-                      </div>
-                      <div className='column is-3'>                      
-                        <TwitterShareButton quote={excerpt} url={this.full_url}>
-                          <TwitterIcon size={42} />
-                        </TwitterShareButton>
-                      </div>
-                      <div className='column is-3'>                      
-                        <GooglePlusShareButton quote={excerpt} url={this.full_url}>
-                          < GooglePlusIcon size={42} />
-                        </GooglePlusShareButton>
-                      </div>
-                      <div className='column is-3'>                      
-                        <WhatsappShareButton quote={excerpt} url={this.full_url}>
-                          <WhatsappIcon size={42} />
-                        </WhatsappShareButton>
-                      </div>
-                    </div>
+              <div className='columns'>
+                <div className='column is-8'>
+                  <ArticleMeta date={post.date_gmt} author={author} />
                 </div>
-                <div className='cloumn is-4 is-hidden-tablet'>
-                    <div className='columns is-mobile' style={{marginLeft:'0px'}}>
-                      <div className='column is-2 '>
-                        <FacebookShareButton quote={post.excerpt.rendered} url={this.full_url}>
-                          <FacebookIcon size={32} />
-                        </FacebookShareButton>
-                      </div>
-                      <div className='column is-2'>                      
-                        <TwitterShareButton quote={post.excerpt.rendered} url={this.full_url}>
-                          <TwitterIcon size={32} />
-                        </TwitterShareButton>
-                      </div>
-                      <div className='column is-2'>                      
-                        <GooglePlusShareButton quote={post.excerpt.rendered} url={this.full_url}>
-                          < GooglePlusIcon size={32} />
-                        </GooglePlusShareButton>
-                      </div>
-                      <div className='column is-2'>                      
-                        <WhatsappShareButton quote={post.excerpt.rendered} url={this.full_url}>
-                          <WhatsappIcon size={32} />
-                        </WhatsappShareButton>
-                      </div>
-                    </div>
+                <div className='cloumn is-4 is-hidden-mobile'>
+                  <ShareButton _url={this.full_url} size={42} excerpt={excerpt} />
                 </div>
               </div>
-            </div> 
+              <div className='cloumn is-4 is-hidden-tablet'>
+                <div className='columns is-mobile' style={{ marginLeft:'0px' }}>
+                  <ShareButton _url={this.full_url} size={32} excerpt={excerpt} />
+                </div>
+              </div>
+            </div>
           </section>
-          
           <figure className='image article-featured-image is-2by1'>
-              <img src={this.FeaturedImage} alt='Gambar artikel' className='lazy lazyLoaded' />
-              <span className='caption'>Caption tes </span>
+            <img src={this.FeaturedImage} alt='Gambar artikel' className='lazy lazyLoaded' />
           </figure>
+          <span className='caption' dangerouslySetInnerHTML={{ __html: this.captionMedia }} />
 
-          <section className='section'>
+        
             <div className='content'>
               <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
             </div>
@@ -200,8 +132,8 @@ class ArticleDetail extends React.Component {
               <span className='tag is-info'>Kabar Alumni</span>
               <span className='tag is-info'>Event</span>
             </div> */}
-          </section>
-        </div>
+          </div>
+     
       </div>
     )
   }

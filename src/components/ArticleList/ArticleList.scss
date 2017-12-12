@@ -58,8 +58,13 @@
 }
 
 .article-meta {
-  padding:10px 5px;
+  padding:5px 5px;
   .article-item-title {
-    line-height: 20px;
+    line-height: 1.4rem;
+    a {
+      div {
+        font-size:0.9rem;
+      }
+    }
   }
 }

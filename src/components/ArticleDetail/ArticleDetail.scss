@@ -1,12 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:900');
 
 .article-featured-image {
-    margin-bottom:2rem;
+    margin-bottom:0.3rem;
 }
 
 .article-title h1 {
     font-size: 2rem;
     font-family: 'Avalon', sans-serif;
+}
+
+.caption {
+    font-size: 0.8rem;
+    color:#555;
+    // padding-left: 0.5rem;
+}
+
+.content {
+    margin-top:2rem;
 }
 
 @media(max-width:767px){
@@ -54,7 +64,7 @@
 
 .section__header {
     padding:0px 20px;
-    margin-bottom: 25px;
+    // margin-bottom: 25px;
 
     .section__header-title {
         margin-bottom: 25px;

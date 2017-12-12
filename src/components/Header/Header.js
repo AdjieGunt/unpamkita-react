@@ -50,7 +50,7 @@ class Header extends React.Component {
             <div className='navbar-end'>
               <div className='navbar-item'>
                 <a className='button is-info' href='#'>
-                  <span>Kirim Tulisan</span>
+                  <span>Kirim Artikel</span>
                 </a>
               </div>
             </div>

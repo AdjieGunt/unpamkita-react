@@ -7,8 +7,21 @@
 }
 
 @import url('https://fonts.googleapis.com/css?family=Raleway');
+@import "../../../node_modules/bulma/sass/utilities/_all";
 
 $family-primary : 'Raleway';
+$primary: $yellow;
+
+
+@import '../../../node_modules/bulma/sass/base/_all';
+@import "../../../node_modules/bulma/sass/elements/_all";
+@import "../../../node_modules/bulma/sass/components/_all";
+@import "../../../node_modules/bulma/sass/layout/_all";
+@import "../../../node_modules/bulma/sass/grid/_all";
+
+// @import '../../../node_modules/bulma/css/bulma.css';
+
+
 
 .page-layout__viewport {
   // padding-top: 4rem;
